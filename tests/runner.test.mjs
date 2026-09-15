@@ -17,18 +17,51 @@ test("inventories tracking surfaces without reading env files", async () => {
   assert.deepEqual(result.findings.consent, ["app.tsx"]);
 });
 
-test("evaluates deterministic browser findings", () => {
-  const browser = {
-    cases: [
-      { label: "no-consent", before: { cookies: [], localStorageKeys: [] }, appEvents: [], requests: [], consoleErrors: [], pageErrors: [] },
-      { label: "deny-consent", before: { cookies: [], localStorageKeys: [] }, appEvents: [], requests: [], consoleErrors: [], pageErrors: [] },
-      { label: "grant-consent", before: { cookies: [], localStorageKeys: [] }, appEvents: [{ name: "ferraria_page_view", eventIdPresent: true }], requests: [], consoleErrors: [], pageErrors: [] },
-    ],
-    journey: { assertions: { onePageViewOnFirstVisit: true, onePageViewOnSecondVisit: true } },
-  };
-  assert.deepEqual(evaluate(browser).map((finding) => finding.status), ["PASS", "PASS", "PASS", "PASS", "PASS", "NOT_RUN", "PASS"]);
+function fixture(events = ['route_results'], overrides = {}) {
+  const entry = (label, names) => ({ label, navigationStatus: 200, consentActionClicked: label !== 'no-consent', before: { cookies: [], localStorageKeys: [], events: [] }, after: { cookies: [], events: names.map(name => ({ name, eventIdPresent: true })) }, requests: [], consoleErrors: [], pageErrors: [] });
+  return { cases: [entry('no-consent', []), entry('deny-consent', []), { ...entry('grant-consent', events), ...overrides }] };
+}
+const statuses = (report, contract = {}) => Object.fromEntries(evaluate(report, null, contract).map(f => [f.id, f.status]));
+
+test('no contract never fabricates consent, page-view or drift passes', () => {
+  const result = statuses(fixture());
+  assert.equal(result.CONSENT_APP_EVENTS, 'UNKNOWN');
+  assert.equal(result.GRANTED_PAGE_VIEW, 'UNKNOWN');
+  assert.equal(result.SOURCE_RUNTIME_EVENT_DRIFT, 'UNKNOWN');
 });
 
+test('independent project names drive identical checks', () => {
+  for (const name of ['route_results', 'shop_visit', 'page_view']) {
+    const result = statuses(fixture([name]), { pageViewEvent: name });
+    assert.equal(result.CONSENT_APP_EVENTS, 'PASS');
+    assert.equal(result.GRANTED_PAGE_VIEW, 'PASS');
+    assert.equal(statuses(fixture([name, name]), { pageViewEvent: name }).GRANTED_PAGE_VIEW, 'FAIL');
+  }
+});
+
+test('missing CMP, inaccessible pages and missing positive control are unknown', () => {
+  for (const report of [fixture([], {}), fixture(['route_results'], { consentActionClicked: false }), fixture(['route_results'], { navigationStatus: 403 }), { cases: [] }]) {
+    assert.equal(statuses(report, { applicationEvents: ['route_results'] }).CONSENT_APP_EVENTS, 'UNKNOWN');
+  }
+});
+
+test('detects declared events before consent including granted-case initial load', () => {
+  for (const index of [0, 1, 2]) {
+    const report = fixture();
+    report.cases[index][index === 2 ? 'before' : 'after'].events.push({ name: 'route_results' });
+    assert.equal(statuses(report, { applicationEvents: ['route_results'] }).CONSENT_APP_EVENTS, 'FAIL');
+  }
+});
+
+test('drift needs observed payloads and an explicit collector contract', () => {
+  const report = fixture();
+  const contract = { collectors: [{ path: '/telemetry', eventField: 'event' }], expectedApiEvents: ['route_results'] };
+  assert.equal(statuses(report, contract).SOURCE_RUNTIME_EVENT_DRIFT, 'UNKNOWN');
+  report.cases[2].requests.push({ payloadSummary: { eventType: 'route_results' } });
+  assert.equal(statuses(report, contract).SOURCE_RUNTIME_EVENT_DRIFT, 'PASS');
+  report.cases[2].requests.push({ payloadSummary: { eventType: 'unexpected' } });
+  assert.equal(statuses(report, contract).SOURCE_RUNTIME_EVENT_DRIFT, 'FAIL');
+});
 
 test("maps only relevant ClickTrail repositories", () => {
   const browserSource = { filesInspected: ["src/@vizuh/clicktrail-browser.ts"], findings: { data_layer: ["src/@vizuh/clicktrail-browser.ts"] }, eventTypes: [] };
