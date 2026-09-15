@@ -1,0 +1,4186 @@
+{
+  "schemaVersion": "0.1.0",
+  "generatedAt": "2026-09-15T15:09:32.744Z",
+  "target": "https://www.aferraria.com/?utm_source=synthetic&utm_medium=test&utm_campaign=journey&gclid=synthetic",
+  "repo": "example-project/v0-ferraria",
+  "source": {
+    "filesInspected": [
+      ".omx/metrics.json",
+      ".omx/state/hud-state.json",
+      ".omx/state/notify-hook-state.json",
+      ".omx/state/team-leader-nudge.json",
+      ".omx/state/tmux-hook-state.json",
+      "APOINTOO_DEV_BRIEF.md",
+      "CODEX_HANDOFF_visual-polish.md",
+      "ai-context.md",
+      "app/agendar-recolha/layout.tsx",
+      "app/agendar-recolha/obrigado/page.tsx",
+      "app/agendar-recolha/page.tsx",
+      "app/api/apointoo/booking/route.ts",
+      "app/api/apointoo/config/route.ts",
+      "app/api/chat/route.ts",
+      "app/api/contact/route.ts",
+      "app/api/leads/route.ts",
+      "app/api/revalidate/route.ts",
+      "app/api/telemetry/clickstack/route.ts",
+      "app/blog/[slug]/page.tsx",
+      "app/blog/page.tsx",
+      "app/contacto/ContactoClientPage.tsx",
+      "app/contacto/page.tsx",
+      "app/layout.tsx",
+      "app/lgpd/page.tsx",
+      "app/obrigado/header.tsx",
+      "app/obrigado/page.tsx",
+      "app/page.tsx",
+      "app/politica-de-privacidade/page.tsx",
+      "app/servicos/engomadoria/EngomadariaClientPage.tsx",
+      "app/servicos/engomadoria/page.tsx",
+      "app/servicos/lavandaria/LavandariaClientPage.tsx",
+      "app/servicos/lavandaria/page.tsx",
+      "app/servicos/layout.tsx",
+      "app/servicos/page.tsx",
+      "app/sitemap.ts",
+      "app/termos-de-servico/page.tsx",
+      "components.json",
+      "components/about-section.tsx",
+      "components/blog-breadcrumbs.tsx",
+      "components/blog-card.tsx",
+      "components/blog-prose.tsx",
+      "components/blog-toc.tsx",
+      "components/commitment-banner.tsx",
+      "components/contact-section.tsx",
+      "components/engomadoria-faq.tsx",
+      "components/engomadoria-pricing.tsx",
+      "components/footer.tsx",
+      "components/gallery-section.tsx",
+      "components/header.tsx",
+      "components/hero-section.tsx",
+      "components/home-blog-preview.tsx",
+      "components/home-loader.tsx",
+      "components/logo.tsx",
+      "components/pricing-section.tsx",
+      "components/recognition-badge.tsx",
+      "components/rwg-conversion-tracker.tsx",
+      "components/rwg-token-capture.tsx",
+      "components/schema-markup.tsx",
+      "components/service-faq.tsx",
+      "components/service-feature.tsx",
+      "components/service-pricing.tsx",
+      "components/services-section.tsx",
+      "components/theme-provider.tsx",
+      "components/top-info-bar.tsx",
+      "components/tracking-provider.tsx",
+      "components/ui/accordion.tsx",
+      "components/ui/alert-dialog.tsx",
+      "components/ui/alert.tsx",
+      "components/ui/aspect-ratio.tsx",
+      "components/ui/avatar.tsx",
+      "components/ui/badge.tsx",
+      "components/ui/breadcrumb.tsx",
+      "components/ui/button.tsx",
+      "components/ui/calendar.tsx",
+      "components/ui/card.tsx",
+      "components/ui/carousel.tsx",
+      "components/ui/chart.tsx",
+      "components/ui/checkbox.tsx",
+      "components/ui/collapsible.tsx",
+      "components/ui/command.tsx",
+      "components/ui/context-menu.tsx",
+      "components/ui/dialog.tsx",
+      "components/ui/drawer.tsx",
+      "components/ui/dropdown-menu.tsx",
+      "components/ui/form.tsx",
+      "components/ui/hover-card.tsx",
+      "components/ui/input-otp.tsx",
+      "components/ui/input.tsx",
+      "components/ui/label.tsx",
+      "components/ui/madalena-chat.tsx",
+      "components/ui/menubar.tsx",
+      "components/ui/navigation-menu.tsx",
+      "components/ui/pagination.tsx",
+      "components/ui/popover.tsx",
+      "components/ui/progress.tsx",
+      "components/ui/radio-group.tsx",
+      "components/ui/resizable.tsx",
+      "components/ui/scroll-area.tsx",
+      "components/ui/select.tsx",
+      "components/ui/separator.tsx",
+      "components/ui/sheet.tsx",
+      "components/ui/sidebar.tsx",
+      "components/ui/skeleton.tsx",
+      "components/ui/slider.tsx",
+      "components/ui/sonner.tsx",
+      "components/ui/switch.tsx",
+      "components/ui/table.tsx",
+      "components/ui/tabs.tsx",
+      "components/ui/textarea.tsx",
+      "components/ui/toast.tsx",
+      "components/ui/toaster.tsx",
+      "components/ui/toggle-group.tsx",
+      "components/ui/toggle.tsx",
+      "components/ui/tooltip.tsx",
+      "components/ui/use-mobile.tsx",
+      "components/ui/use-toast.ts",
+      "components/wooden-button.tsx",
+      "docs/blog-image-fallback.md",
+      "docs/crm-contact-cutover.md",
+      "hooks/use-mobile.tsx",
+      "hooks/use-toast.ts",
+      "lib/apointoo.ts",
+      "lib/blog-image-fallback/catalog.ts",
+      "lib/blog-image-fallback/index.ts",
+      "lib/blog-image-fallback/keywords.ts",
+      "lib/blog-image-fallback/selector.ts",
+      "lib/blog-image-fallback/types.ts",
+      "lib/blog-image-resolver.ts",
+      "lib/booking-attempt.ts",
+      "lib/chatwoot-client.ts",
+      "lib/clickstack-browser.ts",
+      "lib/clickstack-telemetry.mjs",
+      "lib/consent.ts",
+      "lib/contact-attempt.ts",
+      "lib/image-paths.ts",
+      "lib/log.ts",
+      "lib/rate-limit.ts",
+      "lib/retry.ts",
+      "lib/rwg.ts",
+      "lib/schema-utils.ts",
+      "lib/sheets-row.ts",
+      "lib/sheets.ts",
+      "lib/site-url.ts",
+      "lib/tracking-sink.ts",
+      "lib/tracking.ts",
+      "lib/utils.ts",
+      "lib/wordpress.ts",
+      "log.md",
+      "middleware.ts",
+      "next-env.d.ts",
+      "next.config.mjs",
+      "package-lock.json",
+      "package.json",
+      "postcss.config.mjs",
+      "public/images/blog-fallback/credits.json",
+      "public/images/logos/README.md",
+      "scripts/check-clickstack-telemetry.mjs",
+      "scripts/check-contact-attempt.mjs",
+      "tailwind.config.js",
+      "tsconfig.json"
+    ],
+    "findings": {
+      "gtm": [
+        "APOINTOO_DEV_BRIEF.md",
+        "app/layout.tsx"
+      ],
+      "data_layer": [
+        "APOINTOO_DEV_BRIEF.md",
+        "app/layout.tsx",
+        "lib/tracking.ts"
+      ],
+      "consent": [
+        "APOINTOO_DEV_BRIEF.md",
+        "app/agendar-recolha/page.tsx",
+        "app/api/chat/route.ts",
+        "app/api/contact/route.ts",
+        "app/api/leads/route.ts",
+        "app/lgpd/page.tsx",
+        "components/tracking-provider.tsx",
+        "components/ui/madalena-chat.tsx",
+        "lib/apointoo.ts",
+        "lib/chatwoot-client.ts",
+        "lib/clickstack-telemetry.mjs",
+        "lib/consent.ts",
+        "lib/tracking.ts",
+        "scripts/check-clickstack-telemetry.mjs"
+      ],
+      "click_ids": [
+        "APOINTOO_DEV_BRIEF.md",
+        "app/api/contact/route.ts",
+        "app/api/leads/route.ts",
+        "lib/apointoo.ts",
+        "lib/clickstack-telemetry.mjs",
+        "lib/sheets-row.ts",
+        "lib/sheets.ts",
+        "lib/tracking-sink.ts",
+        "lib/tracking.ts",
+        "scripts/check-clickstack-telemetry.mjs"
+      ],
+      "forms": [
+        "APOINTOO_DEV_BRIEF.md",
+        "app/agendar-recolha/page.tsx",
+        "app/api/contact/route.ts",
+        "app/api/leads/route.ts",
+        "app/api/telemetry/clickstack/route.ts",
+        "app/blog/[slug]/page.tsx",
+        "app/contacto/ContactoClientPage.tsx",
+        "components/blog-card.tsx",
+        "components/blog-toc.tsx",
+        "components/contact-section.tsx",
+        "components/ui/alert.tsx",
+        "components/ui/card.tsx",
+        "components/ui/chart.tsx",
+        "components/ui/dialog.tsx",
+        "components/ui/drawer.tsx",
+        "components/ui/form.tsx",
+        "components/ui/label.tsx",
+        "components/ui/madalena-chat.tsx",
+        "lib/apointoo.ts",
+        "lib/clickstack-browser.ts",
+        "lib/sheets-row.ts",
+        "lib/tracking-sink.ts",
+        "lib/tracking.ts",
+        "scripts/check-contact-attempt.mjs"
+      ],
+      "conversion_events": [
+        "APOINTOO_DEV_BRIEF.md",
+        "app/agendar-recolha/obrigado/page.tsx",
+        "app/agendar-recolha/page.tsx",
+        "app/api/telemetry/clickstack/route.ts",
+        "components/rwg-conversion-tracker.tsx",
+        "components/tracking-provider.tsx",
+        "lib/apointoo.ts",
+        "lib/clickstack-telemetry.mjs",
+        "lib/rwg.ts",
+        "lib/tracking.ts",
+        "package-lock.json",
+        "scripts/check-clickstack-telemetry.mjs"
+      ]
+    },
+    "eventTypes": [
+      "form_submission",
+      "phone_click",
+      "session_started",
+      "whatsapp_click"
+    ]
+  },
+  "browser": {
+    "cases": [
+      {
+        "label": "no-consent",
+        "consentActionClicked": false,
+        "before": {
+          "title": "A Ferraria - Engomadoria com Tradição e Qualidade em Lisboa",
+          "cookies": [
+            "_gcl_au",
+            "_gcl_aw",
+            "cookieyes-consent"
+          ],
+          "localStorageKeys": [
+            "_gcl_ls"
+          ],
+          "sessionStorageKeys": [],
+          "events": [
+            {
+              "name": "gtm.js",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.dom",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.load",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "cookie_consent_update",
+              "eventIdPresent": false
+            }
+          ]
+        },
+        "after": {
+          "title": "A Ferraria - Engomadoria com Tradição e Qualidade em Lisboa",
+          "cookies": [
+            "_gcl_au",
+            "_gcl_aw",
+            "cookieyes-consent"
+          ],
+          "localStorageKeys": [
+            "_gcl_ls"
+          ],
+          "sessionStorageKeys": [],
+          "events": [
+            {
+              "name": "gtm.js",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.dom",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.load",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "cookie_consent_update",
+              "eventIdPresent": false
+            }
+          ]
+        },
+        "appEvents": [],
+        "requests": [
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/",
+              "queryKeys": [
+                "gclid",
+                "utm_campaign",
+                "utm_medium",
+                "utm_source"
+              ]
+            },
+            "resourceType": "document"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/webpack-394e74ed5cac52a5.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1255-ca0fdfa57205408f.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/main-app-5eb0d9c55a395822.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9335-77ece060ca917516.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/2619-38012e79151e370a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1356-727b1ed93d409969.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/836-0c024926d6e53859.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9922-6992d18067c83790.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/8741-ab6ca013bd12fa0a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5693-1519ff6408059299.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9417-a6e723ff7d6c6fb9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/6644-2b93d94afbf0a6a9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/7266-35785d7a9aeadb77.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5895-fd962ac8dd60df93.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/page-265a5c448b399cfe.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4881-f3f1adb9793a54f2.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/layout-b7ac76341b4b1ab0.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/vendor/clicktrail-0.2.0-rc.2.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtm.js",
+              "queryKeys": [
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/leads",
+              "queryKeys": []
+            },
+            "resourceType": "fetch",
+            "payloadSummary": {
+              "eventType": "consent_revoked",
+              "siteKeyPresent": false,
+              "attributionFieldsPresent": [],
+              "identityFieldsPresent": []
+            }
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/script.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.google.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googleadservices.com",
+              "pathname": "/pagead/set_partitioned_cookie",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "url"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://ad.doubleclick.net",
+              "pathname": "/ccm/s/collect",
+              "queryKeys": [
+                "auid",
+                "fmt",
+                "gclid",
+                "gtm"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/banner.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/wIH3QYFu.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/config/KKOFBVaU.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/translations/Ws5y7Xtg.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/audit-table/-H20Bs2R.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://region1.google-analytics.com",
+              "pathname": "/g/collect",
+              "queryKeys": [
+                "_eu",
+                "_fv",
+                "_nsi",
+                "_p",
+                "_s",
+                "_ss",
+                "_tu",
+                "cid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "ec_mode",
+                "ecid",
+                "em",
+                "en",
+                "frm",
+                "gaf",
+                "gcd",
+                "gcs",
+                "gtm",
+                "lps",
+                "npa",
+                "pscdl",
+                "rcb",
+                "sct",
+                "seg",
+                "sid",
+                "sr",
+                "tag_exp",
+                "tfd",
+                "tid",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw",
+                "ul",
+                "v"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://pagead2.googlesyndication.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "_tu",
+                "apvc",
+                "dl",
+                "dma",
+                "dma_cps",
+                "en",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclid",
+                "gcs",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "tid",
+                "tids"
+              ]
+            },
+            "resourceType": "fetch"
+          }
+        ],
+        "responses": [
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/",
+              "queryKeys": [
+                "gclid",
+                "utm_campaign",
+                "utm_medium",
+                "utm_source"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/webpack-394e74ed5cac52a5.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5895-fd962ac8dd60df93.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/main-app-5eb0d9c55a395822.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1255-ca0fdfa57205408f.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/2619-38012e79151e370a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1356-727b1ed93d409969.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9922-6992d18067c83790.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/8741-ab6ca013bd12fa0a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9417-a6e723ff7d6c6fb9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/7266-35785d7a9aeadb77.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4881-f3f1adb9793a54f2.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9335-77ece060ca917516.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/836-0c024926d6e53859.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/layout-b7ac76341b4b1ab0.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/6644-2b93d94afbf0a6a9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/vendor/clicktrail-0.2.0-rc.2.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/page-265a5c448b399cfe.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5693-1519ff6408059299.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/leads",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtm.js",
+              "queryKeys": [
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/script.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/banner.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.google.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googleadservices.com",
+              "pathname": "/pagead/set_partitioned_cookie",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "url"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 204,
+            "url": {
+              "origin": "https://ad.doubleclick.net",
+              "pathname": "/ccm/s/collect",
+              "queryKeys": [
+                "auid",
+                "fmt",
+                "gclid",
+                "gtm"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/wIH3QYFu.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/config/KKOFBVaU.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/translations/Ws5y7Xtg.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/audit-table/-H20Bs2R.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 204,
+            "url": {
+              "origin": "https://region1.google-analytics.com",
+              "pathname": "/g/collect",
+              "queryKeys": [
+                "_eu",
+                "_fv",
+                "_nsi",
+                "_p",
+                "_s",
+                "_ss",
+                "_tu",
+                "cid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "ec_mode",
+                "ecid",
+                "em",
+                "en",
+                "frm",
+                "gaf",
+                "gcd",
+                "gcs",
+                "gtm",
+                "lps",
+                "npa",
+                "pscdl",
+                "rcb",
+                "sct",
+                "seg",
+                "sid",
+                "sr",
+                "tag_exp",
+                "tfd",
+                "tid",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw",
+                "ul",
+                "v"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://pagead2.googlesyndication.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "_tu",
+                "apvc",
+                "dl",
+                "dma",
+                "dma_cps",
+                "en",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclid",
+                "gcs",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "tid",
+                "tids"
+              ]
+            }
+          }
+        ],
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      {
+        "label": "deny-consent",
+        "consentActionClicked": true,
+        "before": {
+          "title": "A Ferraria - Engomadoria com Tradição e Qualidade em Lisboa",
+          "cookies": [
+            "_gcl_au",
+            "_gcl_aw",
+            "cookieyes-consent"
+          ],
+          "localStorageKeys": [
+            "_gcl_ls"
+          ],
+          "sessionStorageKeys": [],
+          "events": [
+            {
+              "name": "gtm.js",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.dom",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.load",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "cookie_consent_update",
+              "eventIdPresent": false
+            }
+          ]
+        },
+        "after": {
+          "title": "A Ferraria - Engomadoria com Tradição e Qualidade em Lisboa",
+          "cookies": [
+            "_gcl_au",
+            "_gcl_aw",
+            "cookieyes-consent"
+          ],
+          "localStorageKeys": [
+            "_gcl_ls"
+          ],
+          "sessionStorageKeys": [],
+          "events": [
+            {
+              "name": "gtm.js",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.dom",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.load",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "cookie_consent_update",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "cookie_consent_update",
+              "eventIdPresent": false
+            }
+          ]
+        },
+        "appEvents": [],
+        "requests": [
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/",
+              "queryKeys": [
+                "gclid",
+                "utm_campaign",
+                "utm_medium",
+                "utm_source"
+              ]
+            },
+            "resourceType": "document"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/webpack-394e74ed5cac52a5.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1255-ca0fdfa57205408f.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/main-app-5eb0d9c55a395822.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9335-77ece060ca917516.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/2619-38012e79151e370a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1356-727b1ed93d409969.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/836-0c024926d6e53859.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9922-6992d18067c83790.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/8741-ab6ca013bd12fa0a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5693-1519ff6408059299.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9417-a6e723ff7d6c6fb9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/6644-2b93d94afbf0a6a9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/7266-35785d7a9aeadb77.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5895-fd962ac8dd60df93.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/page-265a5c448b399cfe.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4881-f3f1adb9793a54f2.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/layout-b7ac76341b4b1ab0.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/vendor/clicktrail-0.2.0-rc.2.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtm.js",
+              "queryKeys": [
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/leads",
+              "queryKeys": []
+            },
+            "resourceType": "fetch",
+            "payloadSummary": {
+              "eventType": "consent_revoked",
+              "siteKeyPresent": false,
+              "attributionFieldsPresent": [],
+              "identityFieldsPresent": []
+            }
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/script.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.google.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googleadservices.com",
+              "pathname": "/pagead/set_partitioned_cookie",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "url"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://ad.doubleclick.net",
+              "pathname": "/ccm/s/collect",
+              "queryKeys": [
+                "auid",
+                "fmt",
+                "gclid",
+                "gtm"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/banner.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/wIH3QYFu.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/config/KKOFBVaU.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/translations/Ws5y7Xtg.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/audit-table/-H20Bs2R.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://pagead2.googlesyndication.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "_tu",
+                "apvc",
+                "dl",
+                "dma",
+                "dma_cps",
+                "en",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclid",
+                "gcs",
+                "gdid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "tid",
+                "tids"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://region1.google-analytics.com",
+              "pathname": "/g/collect",
+              "queryKeys": [
+                "_eu",
+                "_fv",
+                "_nsi",
+                "_p",
+                "_s",
+                "_ss",
+                "_tu",
+                "cid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "ec_mode",
+                "ecid",
+                "em",
+                "en",
+                "frm",
+                "gaf",
+                "gcd",
+                "gcs",
+                "gtm",
+                "lps",
+                "npa",
+                "pscdl",
+                "rcb",
+                "sct",
+                "seg",
+                "sid",
+                "sr",
+                "tag_exp",
+                "tfd",
+                "tid",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw",
+                "ul",
+                "v"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://directory.cookieyes.com",
+              "pathname": "/api/v1/ip",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          }
+        ],
+        "responses": [
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/",
+              "queryKeys": [
+                "gclid",
+                "utm_campaign",
+                "utm_medium",
+                "utm_source"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/webpack-394e74ed5cac52a5.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1255-ca0fdfa57205408f.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/main-app-5eb0d9c55a395822.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/2619-38012e79151e370a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1356-727b1ed93d409969.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/layout-b7ac76341b4b1ab0.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9335-77ece060ca917516.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5693-1519ff6408059299.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9922-6992d18067c83790.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/8741-ab6ca013bd12fa0a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5895-fd962ac8dd60df93.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/6644-2b93d94afbf0a6a9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/7266-35785d7a9aeadb77.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9417-a6e723ff7d6c6fb9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/836-0c024926d6e53859.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4881-f3f1adb9793a54f2.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/page-265a5c448b399cfe.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/vendor/clicktrail-0.2.0-rc.2.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtm.js",
+              "queryKeys": [
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/leads",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/script.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/banner.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.google.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 204,
+            "url": {
+              "origin": "https://ad.doubleclick.net",
+              "pathname": "/ccm/s/collect",
+              "queryKeys": [
+                "auid",
+                "fmt",
+                "gclid",
+                "gtm"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/wIH3QYFu.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googleadservices.com",
+              "pathname": "/pagead/set_partitioned_cookie",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "url"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/config/KKOFBVaU.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/translations/Ws5y7Xtg.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/audit-table/-H20Bs2R.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://pagead2.googlesyndication.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "_tu",
+                "apvc",
+                "dl",
+                "dma",
+                "dma_cps",
+                "en",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclid",
+                "gcs",
+                "gdid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "tid",
+                "tids"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 204,
+            "url": {
+              "origin": "https://region1.google-analytics.com",
+              "pathname": "/g/collect",
+              "queryKeys": [
+                "_eu",
+                "_fv",
+                "_nsi",
+                "_p",
+                "_s",
+                "_ss",
+                "_tu",
+                "cid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "ec_mode",
+                "ecid",
+                "em",
+                "en",
+                "frm",
+                "gaf",
+                "gcd",
+                "gcs",
+                "gtm",
+                "lps",
+                "npa",
+                "pscdl",
+                "rcb",
+                "sct",
+                "seg",
+                "sid",
+                "sr",
+                "tag_exp",
+                "tfd",
+                "tid",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw",
+                "ul",
+                "v"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://directory.cookieyes.com",
+              "pathname": "/api/v1/ip",
+              "queryKeys": []
+            }
+          }
+        ],
+        "consoleErrors": [],
+        "pageErrors": []
+      },
+      {
+        "label": "grant-consent",
+        "consentActionClicked": true,
+        "before": {
+          "title": "A Ferraria - Engomadoria com Tradição e Qualidade em Lisboa",
+          "cookies": [
+            "_gcl_au",
+            "_gcl_aw",
+            "cookieyes-consent"
+          ],
+          "localStorageKeys": [
+            "_gcl_ls"
+          ],
+          "sessionStorageKeys": [],
+          "events": [
+            {
+              "name": "gtm.js",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.dom",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.load",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "cookie_consent_update",
+              "eventIdPresent": false
+            }
+          ]
+        },
+        "after": {
+          "title": "A Ferraria - Engomadoria com Tradição e Qualidade em Lisboa",
+          "cookies": [
+            "_ga",
+            "_ga_CJDNXTCJMJ",
+            "_gcl_au",
+            "_gcl_aw",
+            "cookieyes-consent",
+            "ferraria_tracking_attribution",
+            "ferraria_tracking_identity"
+          ],
+          "localStorageKeys": [
+            "_gcl_ls",
+            "ferraria_tracking_attribution",
+            "ferraria_tracking_identity"
+          ],
+          "sessionStorageKeys": [],
+          "events": [
+            {
+              "name": "gtm.js",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.dom",
+              "eventIdPresent": false
+            },
+            {
+              "name": "gtm.load",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "cookie_consent_update",
+              "eventIdPresent": false
+            },
+            {
+              "name": "object",
+              "eventIdPresent": false
+            },
+            {
+              "name": "cookie_consent_update",
+              "eventIdPresent": false
+            },
+            {
+              "name": "ferraria_page_view",
+              "eventIdPresent": true
+            }
+          ]
+        },
+        "appEvents": [
+          {
+            "name": "ferraria_page_view",
+            "eventIdPresent": true
+          }
+        ],
+        "requests": [
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/",
+              "queryKeys": [
+                "gclid",
+                "utm_campaign",
+                "utm_medium",
+                "utm_source"
+              ]
+            },
+            "resourceType": "document"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/webpack-394e74ed5cac52a5.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1255-ca0fdfa57205408f.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/main-app-5eb0d9c55a395822.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9335-77ece060ca917516.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/2619-38012e79151e370a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1356-727b1ed93d409969.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/836-0c024926d6e53859.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9922-6992d18067c83790.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/8741-ab6ca013bd12fa0a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5693-1519ff6408059299.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9417-a6e723ff7d6c6fb9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/6644-2b93d94afbf0a6a9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/7266-35785d7a9aeadb77.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5895-fd962ac8dd60df93.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/page-265a5c448b399cfe.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4881-f3f1adb9793a54f2.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/layout-b7ac76341b4b1ab0.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/vendor/clicktrail-0.2.0-rc.2.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtm.js",
+              "queryKeys": [
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/leads",
+              "queryKeys": []
+            },
+            "resourceType": "fetch",
+            "payloadSummary": {
+              "eventType": "consent_revoked",
+              "siteKeyPresent": false,
+              "attributionFieldsPresent": [],
+              "identityFieldsPresent": []
+            }
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/script.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.google.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://www.googleadservices.com",
+              "pathname": "/pagead/set_partitioned_cookie",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "url"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://ad.doubleclick.net",
+              "pathname": "/ccm/s/collect",
+              "queryKeys": [
+                "auid",
+                "fmt",
+                "gclid",
+                "gtm"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/banner.js",
+              "queryKeys": []
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/wIH3QYFu.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/config/KKOFBVaU.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/translations/Ws5y7Xtg.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/audit-table/-H20Bs2R.json",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://region1.google-analytics.com",
+              "pathname": "/g/collect",
+              "queryKeys": [
+                "_eu",
+                "_fv",
+                "_nsi",
+                "_p",
+                "_s",
+                "_ss",
+                "_tu",
+                "cid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "ec_mode",
+                "ecid",
+                "em",
+                "en",
+                "frm",
+                "gaf",
+                "gcd",
+                "gcs",
+                "gdid",
+                "gtm",
+                "lps",
+                "npa",
+                "pscdl",
+                "rcb",
+                "sct",
+                "seg",
+                "sid",
+                "sr",
+                "tag_exp",
+                "tfd",
+                "tid",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw",
+                "ul",
+                "v"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://pagead2.googlesyndication.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "_tu",
+                "apvc",
+                "dl",
+                "dma",
+                "dma_cps",
+                "en",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclid",
+                "gcs",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "tid",
+                "tids"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "GET",
+            "url": {
+              "origin": "https://directory.cookieyes.com",
+              "pathname": "/api/v1/ip",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "GET",
+            "url": {
+              "origin": "https://googleads.g.doubleclick.net",
+              "pathname": "/pagead/viewthroughconversion/16816060718/",
+              "queryKeys": [
+                "_tu",
+                "async",
+                "auid",
+                "bg",
+                "cv",
+                "data",
+                "dma",
+                "dma_cps",
+                "en",
+                "ept",
+                "fmt",
+                "frm",
+                "fst",
+                "gcd",
+                "gdid",
+                "gtm",
+                "guid",
+                "hn",
+                "npa",
+                "pscdl",
+                "random",
+                "rcb",
+                "rfmt",
+                "tag_exp",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw"
+              ]
+            },
+            "resourceType": "script"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.google.com",
+              "pathname": "/rmkt/collect/16816060718/",
+              "queryKeys": [
+                "_tu",
+                "async",
+                "auid",
+                "bg",
+                "cv",
+                "data",
+                "dma",
+                "dma_cps",
+                "en",
+                "ept",
+                "fmt",
+                "frm",
+                "fst",
+                "gcd",
+                "gclaw",
+                "gclaw_src",
+                "gcp",
+                "gdid",
+                "gtm",
+                "guid",
+                "hn",
+                "npa",
+                "pscdl",
+                "random",
+                "rcb",
+                "tag_exp",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "google",
+            "method": "POST",
+            "url": {
+              "origin": "https://region1.analytics.google.com",
+              "pathname": "/g/collect",
+              "queryKeys": [
+                "_et",
+                "_eu",
+                "_gaz",
+                "_p",
+                "_s",
+                "_tu",
+                "cid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "ecid",
+                "en",
+                "ep.ga_temp_client_id",
+                "ep.ga_temp_ecid",
+                "frm",
+                "gaf",
+                "gcd",
+                "gcs",
+                "gcu",
+                "gcut",
+                "gdid",
+                "gtm",
+                "lps",
+                "npa",
+                "pscdl",
+                "rcb",
+                "sct",
+                "seg",
+                "sid",
+                "sr",
+                "tag_exp",
+                "tfd",
+                "tid",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw",
+                "ul",
+                "v"
+              ]
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/telemetry/clickstack",
+              "queryKeys": []
+            },
+            "resourceType": "fetch"
+          },
+          {
+            "provider": "other",
+            "method": "POST",
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/leads",
+              "queryKeys": []
+            },
+            "resourceType": "fetch",
+            "payloadSummary": {
+              "eventType": "journey",
+              "siteKeyPresent": true,
+              "attributionFieldsPresent": [],
+              "identityFieldsPresent": []
+            }
+          }
+        ],
+        "responses": [
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/",
+              "queryKeys": [
+                "gclid",
+                "utm_campaign",
+                "utm_medium",
+                "utm_source"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/8741-ab6ca013bd12fa0a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9335-77ece060ca917516.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1255-ca0fdfa57205408f.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5895-fd962ac8dd60df93.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/7266-35785d7a9aeadb77.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/836-0c024926d6e53859.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/2619-38012e79151e370a.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/1356-727b1ed93d409969.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9922-6992d18067c83790.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/6644-2b93d94afbf0a6a9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/page-265a5c448b399cfe.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/webpack-394e74ed5cac52a5.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/9417-a6e723ff7d6c6fb9.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/app/layout-b7ac76341b4b1ab0.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/main-app-5eb0d9c55a395822.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/5693-1519ff6408059299.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4881-f3f1adb9793a54f2.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/vendor/clicktrail-0.2.0-rc.2.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/_next/static/chunks/4bd1b696-f785427dddbba9fb.js",
+              "queryKeys": [
+                "dpl"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/leads",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtm.js",
+              "queryKeys": [
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/script.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/banner.js",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.google.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 204,
+            "url": {
+              "origin": "https://ad.doubleclick.net",
+              "pathname": "/ccm/s/collect",
+              "queryKeys": [
+                "auid",
+                "fmt",
+                "gclid",
+                "gtm"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/wIH3QYFu.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googleadservices.com",
+              "pathname": "/pagead/set_partitioned_cookie",
+              "queryKeys": [
+                "ae",
+                "apvc",
+                "auid",
+                "dma",
+                "dma_cps",
+                "dt",
+                "en",
+                "ep.ads_data_redaction",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclaw",
+                "gclid",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "url"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/config/KKOFBVaU.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/translations/Ws5y7Xtg.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.googletagmanager.com",
+              "pathname": "/gtag/js",
+              "queryKeys": [
+                "cx",
+                "gtm",
+                "id"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://cdn-cookieyes.com",
+              "pathname": "/client_data/12894e93f46bfdf199d1df19/audit-table/-H20Bs2R.json",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 204,
+            "url": {
+              "origin": "https://region1.google-analytics.com",
+              "pathname": "/g/collect",
+              "queryKeys": [
+                "_eu",
+                "_fv",
+                "_nsi",
+                "_p",
+                "_s",
+                "_ss",
+                "_tu",
+                "cid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "ec_mode",
+                "ecid",
+                "em",
+                "en",
+                "frm",
+                "gaf",
+                "gcd",
+                "gcs",
+                "gdid",
+                "gtm",
+                "lps",
+                "npa",
+                "pscdl",
+                "rcb",
+                "sct",
+                "seg",
+                "sid",
+                "sr",
+                "tag_exp",
+                "tfd",
+                "tid",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw",
+                "ul",
+                "v"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://pagead2.googlesyndication.com",
+              "pathname": "/ccm/collect",
+              "queryKeys": [
+                "_tu",
+                "apvc",
+                "dl",
+                "dma",
+                "dma_cps",
+                "en",
+                "fmt",
+                "frm",
+                "gcd",
+                "gclid",
+                "gcs",
+                "gtm",
+                "lps",
+                "navt",
+                "npa",
+                "rcb",
+                "rnd",
+                "scrsrc",
+                "tag_exp",
+                "tfd",
+                "tft",
+                "tid",
+                "tids"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://www.google.com",
+              "pathname": "/rmkt/collect/16816060718/",
+              "queryKeys": [
+                "_tu",
+                "async",
+                "auid",
+                "bg",
+                "cv",
+                "data",
+                "dma",
+                "dma_cps",
+                "en",
+                "ept",
+                "fmt",
+                "frm",
+                "fst",
+                "gcd",
+                "gclaw",
+                "gclaw_src",
+                "gcp",
+                "gdid",
+                "gtm",
+                "guid",
+                "hn",
+                "npa",
+                "pscdl",
+                "random",
+                "rcb",
+                "tag_exp",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw"
+              ]
+            }
+          },
+          {
+            "provider": "google",
+            "status": 204,
+            "url": {
+              "origin": "https://region1.analytics.google.com",
+              "pathname": "/g/collect",
+              "queryKeys": [
+                "_et",
+                "_eu",
+                "_gaz",
+                "_p",
+                "_s",
+                "_tu",
+                "cid",
+                "dl",
+                "dma",
+                "dma_cps",
+                "dt",
+                "ecid",
+                "en",
+                "ep.ga_temp_client_id",
+                "ep.ga_temp_ecid",
+                "frm",
+                "gaf",
+                "gcd",
+                "gcs",
+                "gcu",
+                "gcut",
+                "gdid",
+                "gtm",
+                "lps",
+                "npa",
+                "pscdl",
+                "rcb",
+                "sct",
+                "seg",
+                "sid",
+                "sr",
+                "tag_exp",
+                "tfd",
+                "tid",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw",
+                "ul",
+                "v"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 200,
+            "url": {
+              "origin": "https://directory.cookieyes.com",
+              "pathname": "/api/v1/ip",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "google",
+            "status": 200,
+            "url": {
+              "origin": "https://googleads.g.doubleclick.net",
+              "pathname": "/pagead/viewthroughconversion/16816060718/",
+              "queryKeys": [
+                "_tu",
+                "async",
+                "auid",
+                "bg",
+                "cv",
+                "data",
+                "dma",
+                "dma_cps",
+                "en",
+                "ept",
+                "fmt",
+                "frm",
+                "fst",
+                "gcd",
+                "gdid",
+                "gtm",
+                "guid",
+                "hn",
+                "npa",
+                "pscdl",
+                "random",
+                "rcb",
+                "rfmt",
+                "tag_exp",
+                "uaa",
+                "uab",
+                "uafvl",
+                "uam",
+                "uamb",
+                "uap",
+                "uapv",
+                "uaw"
+              ]
+            }
+          },
+          {
+            "provider": "other",
+            "status": 202,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/telemetry/clickstack",
+              "queryKeys": []
+            }
+          },
+          {
+            "provider": "other",
+            "status": 202,
+            "url": {
+              "origin": "https://www.aferraria.com",
+              "pathname": "/api/leads",
+              "queryKeys": []
+            }
+          }
+        ],
+        "consoleErrors": [],
+        "pageErrors": []
+      }
+    ],
+    "journey": {
+      "consentGranted": true,
+      "first": {
+        "title": "A Ferraria - Engomadoria com Tradição e Qualidade em Lisboa",
+        "cookies": [
+          "_ga",
+          "_ga_CJDNXTCJMJ",
+          "_gcl_au",
+          "_gcl_aw",
+          "cookieyes-consent",
+          "ferraria_tracking_attribution",
+          "ferraria_tracking_identity"
+        ],
+        "localStorageKeys": [
+          "_gcl_ls",
+          "ferraria_tracking_attribution",
+          "ferraria_tracking_identity"
+        ],
+        "sessionStorageKeys": [],
+        "events": [
+          {
+            "name": "gtm.js",
+            "eventIdPresent": false
+          },
+          {
+            "name": "gtm.dom",
+            "eventIdPresent": false
+          },
+          {
+            "name": "gtm.load",
+            "eventIdPresent": false
+          },
+          {
+            "name": "object",
+            "eventIdPresent": false
+          },
+          {
+            "name": "object",
+            "eventIdPresent": false
+          },
+          {
+            "name": "cookie_consent_update",
+            "eventIdPresent": false
+          },
+          {
+            "name": "object",
+            "eventIdPresent": false
+          },
+          {
+            "name": "cookie_consent_update",
+            "eventIdPresent": false
+          },
+          {
+            "name": "ferraria_page_view",
+            "eventIdPresent": true
+          }
+        ]
+      },
+      "second": {
+        "title": "A Ferraria - Engomadoria com Tradição e Qualidade em Lisboa",
+        "cookies": [
+          "_ga",
+          "_ga_CJDNXTCJMJ",
+          "_gcl_au",
+          "_gcl_aw",
+          "cookieyes-consent",
+          "ferraria_tracking_attribution",
+          "ferraria_tracking_identity"
+        ],
+        "localStorageKeys": [
+          "_gcl_ls",
+          "ferraria_tracking_attribution",
+          "ferraria_tracking_identity"
+        ],
+        "sessionStorageKeys": [],
+        "events": [
+          {
+            "name": "gtm.js",
+            "eventIdPresent": false
+          },
+          {
+            "name": "ferraria_page_view",
+            "eventIdPresent": true
+          },
+          {
+            "name": "gtm.dom",
+            "eventIdPresent": false
+          },
+          {
+            "name": "gtm.load",
+            "eventIdPresent": false
+          },
+          {
+            "name": "object",
+            "eventIdPresent": false
+          },
+          {
+            "name": "object",
+            "eventIdPresent": false
+          },
+          {
+            "name": "cookie_consent_update",
+            "eventIdPresent": false
+          }
+        ]
+      },
+      "assertions": {
+        "firstTouchPreserved": true,
+        "lastTouchUpdated": true,
+        "onePageViewOnFirstVisit": true,
+        "onePageViewOnSecondVisit": true,
+        "pageViewEventIdOnEachVisit": true
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "CONSENT_APP_EVENTS",
+      "severity": "pass",
+      "status": "PASS",
+      "message": "No application events were observed in the denied case."
+    },
+    {
+      "id": "GRANTED_PAGE_VIEW",
+      "severity": "pass",
+      "status": "PASS",
+      "message": "One consented ferraria_page_view event was observed."
+    },
+    {
+      "id": "BROWSER_ERRORS",
+      "severity": "pass",
+      "status": "PASS",
+      "message": "Console and page errors were checked."
+    },
+    {
+      "id": "PRECONSENT_PROVIDER_ACTIVITY",
+      "severity": "warn",
+      "status": "WARN",
+      "message": "Google/linker cookies or provider requests were observed before affirmative consent; review the CMP and Consent Mode configuration."
+    },
+    {
+      "id": "SOURCE_RUNTIME_EVENT_DRIFT",
+      "severity": "fail",
+      "status": "FAIL",
+      "message": "Observed API event types absent from the inspected source contract: consent_revoked, journey."
+    },
+    {
+      "id": "FORM_CONVERSION",
+      "severity": "not-run",
+      "status": "NOT_RUN",
+      "message": "Forms and conversions are not submitted by the safe default runner."
+    },
+    {
+      "id": "PAGE_VIEW_DEDUPE",
+      "severity": "pass",
+      "status": "PASS",
+      "message": "One page-view event per synthetic visit was checked."
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ClickTrail Verify Report",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "target",
+    "repo",
+    "source",
+    "browser",
+    "findings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "target": {
+      "type": "string",
+      "format": "uri"
+    },
+    "repo": {
+      "type": "string"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "filesInspected",
+        "findings"
+      ],
+      "properties": {
+        "filesInspected": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "findings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "browser": {
+      "type": "object",
+      "required": [
+        "cases",
+        "journey"
+      ],
+      "properties": {
+        "cases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/browserCase"
+          }
+        },
+        "journey": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    }
+  },
+  "$defs": {
+    "browserCase": {
+      "type": "object",
+      "required": [
+        "label",
+        "consentActionClicked",
+        "before",
+        "after",
+        "appEvents",
+        "requests",
+        "responses",
+        "consoleErrors",
+        "pageErrors"
+      ],
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "consentActionClicked": {
+          "type": "boolean"
+        },
+        "before": {
+          "type": "object"
+        },
+        "after": {
+          "type": "object"
+        },
+        "appEvents": {
+          "type": "array"
+        },
+        "requests": {
+          "type": "array"
+        },
+        "responses": {
+          "type": "array"
+        },
+        "consoleErrors": {
+          "type": "array"
+        },
+        "pageErrors": {
+          "type": "array"
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "required": [
+        "id",
+        "severity",
+        "status",
+        "message"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "pass",
+            "fail",
+            "not-run",
+            "warn"
+          ]
+        },
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN",
+            "WARN"
+          ]
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
