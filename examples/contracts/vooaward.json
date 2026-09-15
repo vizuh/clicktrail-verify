@@ -1,0 +1,30 @@
+{
+  "applicationEvents": [
+    "view_item_list",
+    "view_promotion",
+    "select_promotion",
+    "search",
+    "search_failed",
+    "access_check_failed",
+    "date_results_loaded"
+  ],
+  "collectors": [
+    {
+      "path": "/api/telemetry/clickstack",
+      "eventField": "event"
+    }
+  ],
+  "expectedApiEvents": [
+    "view_item_list",
+    "view_promotion",
+    "select_promotion",
+    "search",
+    "search_failed",
+    "access_check_failed",
+    "date_results_loaded"
+  ],
+  "consent": {
+    "acceptButton": "Aceitar analytics",
+    "denyButton": "Recusar analytics"
+  }
+}

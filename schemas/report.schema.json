@@ -130,6 +130,9 @@
     },
     "clicktrailSurfaceDetected": {
       "type": "boolean"
+    },
+    "contract": {
+      "type": "object"
     }
   },
   "$defs": {
@@ -193,7 +196,8 @@
             "pass",
             "fail",
             "not-run",
-            "warn"
+            "warn",
+            "unknown"
           ]
         },
         "status": {
@@ -201,7 +205,8 @@
             "PASS",
             "FAIL",
             "NOT_RUN",
-            "WARN"
+            "WARN",
+            "UNKNOWN"
           ]
         },
         "message": {
