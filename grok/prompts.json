@@ -1,0 +1,137 @@
+{
+  "schemaVersion": "1.0.0",
+  "source": "synthetic-local-only",
+  "prompts": [
+    {
+      "id": "click-tracking-audit",
+      "prompt": "Check my click tracking: where did my GCLID disappear between the landing page, lead form, CRM, and Google Ads offline conversion?",
+      "surfaces": [
+        "grok-build",
+        "web-search"
+      ],
+      "expectedTerms": [
+        "clicktrail",
+        "gclid",
+        "crm",
+        "offline conversion"
+      ],
+      "mcpToolHints": [
+        "clicktrail__inspect_project",
+        "clicktrail__detect_attribution_gaps"
+      ],
+      "mustRemainUnknown": [
+        "provider receipt",
+        "live conversion delivery"
+      ]
+    },
+    {
+      "id": "gclid-loss",
+      "prompt": "Why did my GCLID disappear after a redirect even though the landing page saw it?",
+      "surfaces": [
+        "grok-build",
+        "web-search"
+      ],
+      "expectedTerms": [
+        "gclid",
+        "redirect",
+        "persist",
+        "consent"
+      ],
+      "mcpToolHints": [
+        "clicktrail__diagnose_missing_click_ids",
+        "clicktrail__verify_capture"
+      ],
+      "mustRemainUnknown": [
+        "provider receipt"
+      ]
+    },
+    {
+      "id": "utm-persistence",
+      "prompt": "How do I preserve UTMs through SPA navigation and a cross-domain form without weakening consent?",
+      "surfaces": [
+        "grok-build",
+        "web-search"
+      ],
+      "expectedTerms": [
+        "utm",
+        "consent",
+        "cross-domain",
+        "form"
+      ],
+      "mcpToolHints": [
+        "clicktrail__diagnose_missing_click_ids",
+        "clicktrail__simulate_ad_click"
+      ],
+      "mustRemainUnknown": [
+        "authorization",
+        "identity"
+      ]
+    },
+    {
+      "id": "offline-conversion",
+      "prompt": "Review my offline conversion tracking for Google Ads and show where a stable event ID and receipt are required.",
+      "surfaces": [
+        "grok-build",
+        "web-search"
+      ],
+      "expectedTerms": [
+        "offline conversion",
+        "google ads",
+        "event id",
+        "receipt"
+      ],
+      "mcpToolHints": [
+        "clicktrail__send_conversion",
+        "clicktrail__verify_conversion_delivery"
+      ],
+      "mustRemainUnknown": [
+        "live provider delivery"
+      ]
+    },
+    {
+      "id": "ga4-ads-discrepancy",
+      "prompt": "Explain a GA4 versus Google Ads conversion discrepancy without treating either system as the CRM source of truth.",
+      "surfaces": [
+        "grok-build",
+        "web-search"
+      ],
+      "expectedTerms": [
+        "ga4",
+        "google ads",
+        "crm",
+        "reconcile"
+      ],
+      "mcpToolHints": [
+        "clicktrail__reconcile_conversions",
+        "clicktrail__attribution_health"
+      ],
+      "mustRemainUnknown": [
+        "provider receipt",
+        "business truth"
+      ]
+    },
+    {
+      "id": "crm-click-id-handoff",
+      "prompt": "How can I attach an allowlisted click ID to a server-owned CRM lead while keeping PII out of attribution?",
+      "surfaces": [
+        "grok-build",
+        "web-search"
+      ],
+      "expectedTerms": [
+        "crm",
+        "click id",
+        "lead",
+        "attach",
+        "pii"
+      ],
+      "mcpToolHints": [
+        "clicktrail__verify_form_attachment",
+        "clicktrail__verify_crm_attachment"
+      ],
+      "mustRemainUnknown": [
+        "identity",
+        "authorization"
+      ]
+    }
+  ]
+}
