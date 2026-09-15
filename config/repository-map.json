@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "0.1.0",
+  "repositories": [
+    {
+      "id": "clicktrail-js",
+      "url": "https://github.com/vizuh/clicktrail-js",
+      "directory": "clicktrail-js",
+      "responsibility": "Canonical browser/server JavaScript attribution and event contracts",
+      "triggers": [
+        "@vizuh/clicktrail-browser",
+        "@vizuh/clicktrail-next",
+        "clicktrail-js",
+        "canonical attribution",
+        "event_id"
+      ]
+    },
+    {
+      "id": "click-trail-handler",
+      "url": "https://github.com/vizuh/click-trail-handler",
+      "directory": "click-trail-handler",
+      "responsibility": "WordPress/PHP capture, forms, WooCommerce order metadata, consent, and delivery boundaries",
+      "triggers": [
+        "woocommerce",
+        "_clicutcl_",
+        "clicutcl_",
+        "woocommerce order"
+      ]
+    },
+    {
+      "id": "gtm",
+      "url": "https://github.com/vizuh/gtm",
+      "directory": "gtm",
+      "responsibility": "GTM templates, data-layer contracts, and consent-aware tag configuration",
+      "triggers": [
+        "GTM-",
+        "googletagmanager",
+        "dataLayer",
+        "gtm template",
+        "google tag manager",
+        "gtm"
+      ]
+    },
+    {
+      "id": "clicktrail-mcp",
+      "url": "https://github.com/vizuh/clicktrail-mcp",
+      "directory": "clicktrail-mcp",
+      "responsibility": "Agent-facing diagnostics and delivery-neutral verification tools",
+      "triggers": [
+        "mcp",
+        "tools/call",
+        "inspect_project",
+        "verify_capture",
+        "attribution_health"
+      ]
+    },
+    {
+      "id": "clicktrail-examples",
+      "url": "https://github.com/vizuh/clicktrail-examples",
+      "directory": "clicktrail-examples",
+      "responsibility": "Runnable integration fixtures and adapter examples",
+      "triggers": [
+        "example",
+        "fixture",
+        "integration example"
+      ]
+    },
+    {
+      "id": "clicktrail-skills",
+      "url": "https://github.com/vizuh/clicktrail-skills",
+      "directory": "clicktrail-skills",
+      "responsibility": "Problem-oriented developer skills and diagnostic workflows",
+      "triggers": [
+        "skill",
+        "SKILL.md",
+        "workflow"
+      ]
+    },
+    {
+      "id": "clicktrail-distribution",
+      "url": "https://github.com/vizuh/clicktrail-distribution",
+      "directory": "clicktrail-distribution",
+      "responsibility": "Distribution evidence, benchmarks, and opportunity research",
+      "triggers": [
+        "benchmark",
+        "distribution",
+        "opportunity",
+        "competitor"
+      ]
+    }
+  ]
+}

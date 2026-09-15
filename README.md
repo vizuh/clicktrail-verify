@@ -15,6 +15,7 @@ npx playwright install chromium
 npx clicktrail-verify \
   --repo /path/to/project \
   --url "https://staging.example.com/?utm_source=test&utm_medium=cpc&gclid=synthetic" \
+  --clicktrail-root /path/to/ClickTrail \
   --output .clicktrail/runs/latest
 ```
 
@@ -35,6 +36,22 @@ It records event names and schema-presence flags, storage and cookie names,
 redacted request metadata, response statuses, console errors, and page errors.
 It also reports first/last-touch behavior when a second synthetic URL is passed
 with `--second-url`.
+
+## ClickTrail repository mapping
+
+Use `--clicktrail-root` when the ClickTrail source repositories are available
+locally. The runner maps evidence to the narrowest relevant repository:
+
+- JavaScript attribution and event contracts → `clicktrail-js`;
+- WordPress, PHP, WooCommerce, and `_clicutcl_*` metadata → `click-trail-handler`;
+- GTM and data-layer configuration → `gtm`;
+- agent diagnostics → `clicktrail-mcp`;
+- runnable fixtures → `clicktrail-examples`.
+
+The map is stored in `config/repository-map.json`. Missing local repositories
+are reported as `missing`; without `--clicktrail-root`, references are marked
+`not-provided`. Generic host-application failures are not assigned to a
+ClickTrail repository.
 
 ## Output
 

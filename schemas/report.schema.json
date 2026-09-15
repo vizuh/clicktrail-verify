@@ -30,7 +30,8 @@
       "type": "object",
       "required": [
         "filesInspected",
-        "findings"
+        "findings",
+        "eventTypes"
       ],
       "properties": {
         "filesInspected": {
@@ -46,6 +47,12 @@
             "items": {
               "type": "string"
             }
+          }
+        },
+        "eventTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }
@@ -76,6 +83,53 @@
       "items": {
         "$ref": "#/$defs/finding"
       }
+    },
+    "clicktrailTargets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "url",
+          "responsibility",
+          "localStatus",
+          "references"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "responsibility": {
+            "type": "string"
+          },
+          "localPath": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "localStatus": {
+            "enum": [
+              "present",
+              "missing",
+              "not-provided"
+            ]
+          },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "clicktrailSurfaceDetected": {
+      "type": "boolean"
     }
   },
   "$defs": {
@@ -152,6 +206,12 @@
         },
         "message": {
           "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "clicktrailTargets": {
+          "type": "array"
         }
       }
     }
