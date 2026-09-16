@@ -110,8 +110,9 @@ ClickTrail repository.
 ## Output
 
 The report follows [`schemas/report.schema.json`](schemas/report.schema.json).
-Use `--output` to select a directory. Reports contain no cookie values, event
-IDs, visitor IDs, emails, phone numbers, headers, or request bodies.
+Use `--output` to select a directory. Reports contain no cookie values, event IDs, visitor IDs, emails, phone numbers,
+headers, request bodies, or target query values. Target metadata keeps only the
+origin, pathname, and query-key names.
 
 ## Evidence contract
 

@@ -12,6 +12,24 @@ const FINDING_CASES = new Map([
 const count = (value) => Array.isArray(value) ? value.length : 0;
 const object = (value) => value && typeof value === 'object' && !Array.isArray(value) ? value : {};
 
+export function redactTarget(value) {
+  try {
+    const url = new URL(String(value));
+    return {
+      origin: url.origin,
+      pathname: url.pathname || '/',
+      queryKeys: [...new Set([...url.searchParams.keys()].sort())],
+    };
+  } catch {
+    return null;
+  }
+}
+
+export function targetUrl(value) {
+  const target = redactTarget(value);
+  return target ? `${target.origin}${target.pathname}` : null;
+}
+
 function caseObservation(item) {
   const before = object(item?.before);
   const after = object(item?.after);
@@ -74,7 +92,7 @@ export function buildEvidenceEnvelope({ target, repo, contract, source, browser,
   return {
     schemaVersion: EVIDENCE_SCHEMA_VERSION,
     producer: 'clicktrail-verify',
-    target: typeof target === 'string' ? target : null,
+    target: typeof target === 'string' ? redactTarget(target) : null,
     repo: typeof repo === 'string' ? repo : null,
     contract: object(contract),
     observations,
@@ -88,6 +106,7 @@ export function validateEvidenceEnvelope(envelope) {
   if (!envelope || typeof envelope !== 'object' || Array.isArray(envelope)) return ['evidence must be an object'];
   if (envelope.schemaVersion !== EVIDENCE_SCHEMA_VERSION) errors.push(`unsupported evidence schema: ${envelope.schemaVersion}`);
   if (envelope.producer !== 'clicktrail-verify') errors.push('evidence producer is invalid');
+  if (envelope.target !== null && (typeof envelope.target !== 'object' || typeof envelope.target.origin !== 'string' || typeof envelope.target.pathname !== 'string' || !Array.isArray(envelope.target.queryKeys))) errors.push('evidence target metadata is invalid');
   if (!Array.isArray(envelope.observations)) errors.push('evidence observations must be an array');
   if (!Array.isArray(envelope.findings)) errors.push('evidence findings must be an array');
   const ids = new Set((envelope.observations || []).map(observation => observation?.id));
