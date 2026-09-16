@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { inventorySource, evaluate } from "../src/runner.mjs";
+import { inventorySource, evaluate, runBrowserVerification } from "../src/runner.mjs";
 import { resolveClickTrailTargets, annotateFindings } from "../src/clicktrail-map.mjs";
 
 test("inventories tracking surfaces without reading env files", async () => {
@@ -61,6 +61,29 @@ test('drift needs observed payloads and an explicit collector contract', () => {
   assert.equal(statuses(report, contract).SOURCE_RUNTIME_EVENT_DRIFT, 'PASS');
   report.cases[2].requests.push({ payloadSummary: { eventType: 'unexpected' } });
   assert.equal(statuses(report, contract).SOURCE_RUNTIME_EVENT_DRIFT, 'FAIL');
+});
+
+test("does not map GTM from an empty finding category", () => {
+  const source = { filesInspected: ["src/analytics.ts"], findings: { gtm: [], data_layer: [] }, eventTypes: [] };
+  assert.deepEqual(resolveClickTrailTargets({ source }), []);
+});
+
+test("maps content evidence even when it is not present in a filename", () => {
+  const source = { filesInspected: ["src/analytics.ts"], findings: { gtm: ["src/analytics.ts"] }, eventTypes: [], content: ["https://www.googletagmanager.com/gtm.js?id=GTM-TEST"] };
+  assert.deepEqual(resolveClickTrailTargets({ source }).map((target) => target.id), ["gtm"]);
+});
+
+test("malformed navigation returns unknown browser evidence", async () => {
+  const browser = await runBrowserVerification({ url: "not-a-url", contract: {} });
+  assert.equal(browser.browserError, "Invalid navigation URL");
+  assert.deepEqual(evaluate(browser, null, {}).map(({ status }) => status), ["UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "NOT_RUN"]);
+});
+
+test("malformed browser reports remain unknown", () => {
+  const result = statuses({ cases: [{ label: "grant-consent", navigationStatus: "ok", after: null }] }, { pageViewEvent: "page_view" });
+  assert.equal(result.CONSENT_APP_EVENTS, "UNKNOWN");
+  assert.equal(result.GRANTED_PAGE_VIEW, "UNKNOWN");
+  assert.equal(result.BROWSER_ERRORS, "UNKNOWN");
 });
 
 test("maps only relevant ClickTrail repositories", () => {

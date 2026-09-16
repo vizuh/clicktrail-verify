@@ -25,6 +25,10 @@ For a machine with an installed Chrome binary:
 CLICKTRAIL_BROWSER_EXECUTABLE=/usr/bin/google-chrome npx clicktrail-verify \
   --repo . --url https://staging.example.com/
 ```
+The runner keeps Chromium sandboxing enabled by default. Only use
+`--allow-no-sandbox` (or `CLICKTRAIL_ALLOW_NO_SANDBOX=1`) inside an explicitly
+isolated environment when the host cannot launch Chromium with its sandbox.
+
 
 The current runner executes three isolated cases:
 
@@ -32,8 +36,9 @@ The current runner executes three isolated cases:
 - denied consent;
 - granted consent.
 
-It records event names and schema-presence flags, storage and cookie names,
-redacted request metadata, response statuses, console errors, and page errors.
+It records allowlisted event names and schema-presence flags, safe storage and cookie
+names, redacted request metadata, response statuses, and error counts. Raw page titles,
+console messages, page-error text, cookie values, and request paths are not written.
 It also reports first/last-touch behavior when a second synthetic URL is passed
 with `--second-url`.
 

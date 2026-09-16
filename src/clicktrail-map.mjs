@@ -5,16 +5,30 @@ import mapConfig from "../config/repository-map.json" with { type: "json" };
 function normalized(text) { return String(text || "").toLowerCase(); }
 
 export function resolveClickTrailMapping({ source, clicktrailRoot } = {}) {
+  const findings = source?.findings && typeof source.findings === "object" ? source.findings : {};
+  // Finding categories are evidence only when their file list is non-empty. In
+  // particular, every inventory has a `gtm` key, so including all keys makes
+  // every project look like it uses the GTM repository.
+  const observedFindingNames = Object.entries(findings)
+    .filter(([, files]) => Array.isArray(files) && files.length > 0)
+    .map(([name]) => name);
+  const content = [source?.content, source?.texts, source?.sourceText]
+    .flatMap((value) => Array.isArray(value) ? value : [value])
+    .filter((value) => typeof value === "string");
   const haystack = normalized([
     ...(source?.filesInspected || []),
-    ...Object.keys(source?.findings || {}),
-    ...Object.values(source?.findings || {}).flat(),
+    ...observedFindingNames,
+    ...Object.values(findings).flat(),
     ...(source?.eventTypes || []),
+    ...content,
   ].join(" "));
   const explicitSurface = /clicktrail|@vizuh|_clicutcl|clicutcl/.test(haystack);
-  const matches = mapConfig.repositories.filter((candidate) =>
-    candidate.triggers.some((trigger) => haystack.includes(normalized(trigger)))
-  );
+  const gtmEvidence = observedFindingNames.includes("gtm")
+    || /googletagmanager|gtm\.js|\bGTM-[A-Z0-9]+\b/i.test(content.join(" "));
+  const matches = mapConfig.repositories.filter((candidate) => {
+    if (candidate.id === "gtm" && !gtmEvidence) return false;
+    return candidate.triggers.some((trigger) => haystack.includes(normalized(trigger)));
+  });
   const targets = matches.map((candidate) => {
     const localPath = clicktrailRoot ? path.resolve(clicktrailRoot, candidate.directory) : null;
     return {
