@@ -5,6 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import { inventorySource, evaluate, runBrowserVerification } from "../src/runner.mjs";
 import { resolveClickTrailTargets, annotateFindings } from "../src/clicktrail-map.mjs";
+import { buildEvidenceEnvelope, validateEvidenceEnvelope } from "../src/evidence.mjs";
 
 test("inventories tracking surfaces without reading env files", async () => {
   const repo = await fs.mkdtemp(path.join(os.tmpdir(), "clicktrail-verify-"));
@@ -22,6 +23,30 @@ function fixture(events = ['route_results'], overrides = {}) {
   return { cases: [entry('no-consent', []), entry('deny-consent', []), { ...entry('grant-consent', events), ...overrides }] };
 }
 const statuses = (report, contract = {}) => Object.fromEntries(evaluate(report, null, contract).map(f => [f.id, f.status]));
+
+
+test("builds a redacted evidence envelope with finding references", () => {
+  const report = fixture(["route_results"]);
+  const contract = { applicationEvents: ["route_results"], pageViewEvent: "route_results" };
+  const findings = evaluate(report, null, contract);
+  const envelope = buildEvidenceEnvelope({
+    target: "https://example.test/",
+    repo: "/workspace/app",
+    contract,
+    source: { filesInspected: ["src/app.ts"], findings: { data_layer: ["src/app.ts"] }, eventTypes: ["route_results"] },
+    browser: report,
+    findings,
+  });
+  assert.equal(envelope.schemaVersion, "1.0.0");
+  assert.equal(envelope.producer, "clicktrail-verify");
+  assert.equal(validateEvidenceEnvelope(envelope).length, 0);
+  assert.deepEqual(envelope.observations.find(item => item.id === "browser:no-consent").after, { cookieCount: 0, localStorageKeyCount: 0, sessionStorageKeyCount: 0, eventCount: 0, appEventCount: 0 });
+  assert.ok(envelope.findings.find(item => item.id === "CONSENT_APP_EVENTS").evidenceRefs.includes("browser:no-consent"));
+  assert.ok(envelope.findings.every(item => item.evaluator === "clicktrail-verify-deterministic"));
+  const tampered = structuredClone(envelope);
+  tampered.findings[0].evidenceRefs.push("browser:missing");
+  assert.match(validateEvidenceEnvelope(tampered).join("; "), /missing evidence reference/);
+});
 
 test('no contract never fabricates consent, page-view or drift passes', () => {
   const result = statuses(fixture());
