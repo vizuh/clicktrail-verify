@@ -15,9 +15,25 @@ function args(argv) {
   }
   return result;
 }
+
+function validateReportShape(report) {
+  const errors = [];
+  for (const key of ['schemaVersion', 'generatedAt', 'target', 'repo', 'source', 'browser', 'findings']) {
+    if (!(key in report)) errors.push(`missing ${key}`);
+  }
+  try { new URL(report.target); } catch { errors.push('target must be a valid URL'); }
+  if (!Array.isArray(report.findings)) errors.push('findings must be an array');
+  if (!report.source || !Array.isArray(report.source.filesInspected) || !Array.isArray(report.source.eventTypes)) errors.push('source shape is invalid');
+  if (!report.browser || !Array.isArray(report.browser.cases)) errors.push('browser shape is invalid');
+  for (const finding of report.findings || []) {
+    if (!finding || typeof finding.id !== 'string' || typeof finding.status !== 'string' || typeof finding.message !== 'string') errors.push('finding shape is invalid');
+    if (finding && !['PASS', 'FAIL', 'NOT_RUN', 'WARN', 'UNKNOWN'].includes(finding.status)) errors.push(`invalid finding status: ${finding.status}`);
+  }
+  return errors;
+}
 const options = args(process.argv.slice(2));
 if (!options.repo || !options.url) {
-  console.error('Usage: clicktrail-verify --repo PATH --url URL [--contract FILE] [--second-url URL] [--clicktrail-root PATH] [--output DIR] [--executable-path PATH]');
+  console.error('Usage: clicktrail-verify --repo PATH --url URL [--contract FILE] [--second-url URL] [--clicktrail-root PATH] [--output DIR] [--executable-path PATH] [--allow-no-sandbox]');
   process.exit(2);
 }
 const contract = validateContract(options.contract ? JSON.parse(await fs.readFile(String(options.contract), 'utf8')) : {});
@@ -26,7 +42,9 @@ const output = path.resolve(String(options.output || '.clicktrail/runs/latest'))
 await fs.mkdir(output, { recursive: true });
 const source = await inventorySource(repo);
 const clicktrailMapping = resolveClickTrailMapping({ repo, source, clicktrailRoot: options.clicktrail_root || process.env.CLICKTRAIL_ROOT });
-const browser = await runBrowserVerification({ contract, url: String(options.url), secondUrl: options.second_url ? String(options.second_url) : undefined, executablePath: options.executable_path || process.env.CLICKTRAIL_BROWSER_EXECUTABLE });
+const browser = await runBrowserVerification({ contract, url: String(options.url), secondUrl: options.second_url ? String(options.second_url) : undefined, executablePath: options.executable_path || process.env.CLICKTRAIL_BROWSER_EXECUTABLE, allowNoSandbox: options.allow_no_sandbox === true || process.env.CLICKTRAIL_ALLOW_NO_SANDBOX === '1' });
 const report = { schemaVersion: '0.2.0', contract, generatedAt: new Date().toISOString(), target: String(options.url), repo, source, clicktrailTargets: clicktrailMapping.targets, clicktrailSurfaceDetected: clicktrailMapping.explicitSurface, browser, findings: annotateFindings(evaluate(browser, source, contract), clicktrailMapping.targets, clicktrailMapping) };
+const reportErrors = validateReportShape(report);
+if (reportErrors.length) throw new Error(`Generated report failed schema checks: ${reportErrors.join('; ')}`);
 await fs.writeFile(path.join(output, 'report.json'), `${JSON.stringify(report, null, 2)}\n`);
 console.log(JSON.stringify({ output, findings: report.findings.map(({ id, status }) => ({ id, status })), filesInspected: source.filesInspected.length }, null, 2));
