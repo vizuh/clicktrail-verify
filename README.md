@@ -85,9 +85,11 @@ leave the corresponding journey check `UNKNOWN`. No store or event prefix is
 hardcoded for any client. See [VooAward example](examples/contracts/vooaward.json);
 it intentionally does not assume a data-layer page-view event.
 
-Report schema `0.2.0` adds `UNKNOWN` and records the applied contract. Historical
+Report schema `0.3.0` adds a redacted `evidence` envelope. Each deterministic
+finding includes references to observations in that envelope. Historical
 reports under `examples/aferraria-2026-09-15` predate this behavior and are not
-current generic-runner acceptance evidence.
+current generic-runner acceptance evidence. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+for the cross-repository flow and trust boundaries.
 
 ## ClickTrail repository mapping
 
@@ -110,6 +112,14 @@ ClickTrail repository.
 The report follows [`schemas/report.schema.json`](schemas/report.schema.json).
 Use `--output` to select a directory. Reports contain no cookie values, event
 IDs, visitor IDs, emails, phone numbers, headers, or request bodies.
+
+## Evidence contract
+
+The report is the factual handoff between Verify, MCP, and agent skills. The
+`evidence` object is produced by Verify and contains redacted observations plus
+`evidenceRefs` on every finding. It records what was observed, not what a
+provider accepted. An optional TypeSafe advisor may consume the envelope for
+routing and priority, but cannot change any finding status.
 
 ## Safety boundary
 

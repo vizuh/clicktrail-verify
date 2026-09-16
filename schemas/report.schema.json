@@ -9,7 +9,8 @@
     "repo",
     "source",
     "browser",
-    "findings"
+    "findings",
+    "evidence"
   ],
   "properties": {
     "schemaVersion": {
@@ -82,6 +83,20 @@
       "type": "array",
       "items": {
         "$ref": "#/$defs/finding"
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["schemaVersion", "producer", "observations", "findings", "advisory"],
+      "properties": {
+        "schemaVersion": { "const": "1.0.0" },
+        "producer": { "const": "clicktrail-verify" },
+        "target": { "type": ["string", "null"] },
+        "repo": { "type": ["string", "null"] },
+        "contract": { "type": "object" },
+        "observations": { "type": "array", "items": { "type": "object" } },
+        "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+        "advisory": { "type": "object" }
       }
     },
     "clicktrailTargets": {
@@ -217,6 +232,13 @@
         },
         "clicktrailTargets": {
           "type": "array"
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "evaluator": {
+          "type": "string"
         }
       }
     }
