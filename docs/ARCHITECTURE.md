@@ -49,7 +49,8 @@ New reports contain an `evidence` object with schema `1.0.0`. It contains:
   safe relative paths;
 - `findings`: deterministic results with `evidenceRefs`;
 - `advisory`: an explicit `not-run` placeholder until an optional advisor runs;
-- `producer`: `clicktrail-verify`.
+- `producer`: `clicktrail-verify`;
+- `target`: origin, pathname, and query-key names only; query values are removed.
 
 `PASS`, `FAIL`, `WARN`, `NOT_RUN`, and `UNKNOWN` remain factual report states.
 An evidence reference identifies an observation. It is not a cryptographic

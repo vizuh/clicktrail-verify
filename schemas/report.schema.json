@@ -91,7 +91,16 @@
       "properties": {
         "schemaVersion": { "const": "1.0.0" },
         "producer": { "const": "clicktrail-verify" },
-        "target": { "type": ["string", "null"] },
+        "target": {
+          "type": ["object", "null"],
+          "required": ["origin", "pathname", "queryKeys"],
+          "additionalProperties": false,
+          "properties": {
+            "origin": { "type": "string", "format": "uri" },
+            "pathname": { "type": "string" },
+            "queryKeys": { "type": "array", "items": { "type": "string" } }
+          }
+        },
         "repo": { "type": ["string", "null"] },
         "contract": { "type": "object" },
         "observations": { "type": "array", "items": { "type": "object" } },

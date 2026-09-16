@@ -39,6 +39,7 @@ test("builds a redacted evidence envelope with finding references", () => {
   });
   assert.equal(envelope.schemaVersion, "1.0.0");
   assert.equal(envelope.producer, "clicktrail-verify");
+  assert.deepEqual(envelope.target, { origin: "https://example.test", pathname: "/", queryKeys: [] });
   assert.equal(validateEvidenceEnvelope(envelope).length, 0);
   assert.deepEqual(envelope.observations.find(item => item.id === "browser:no-consent").after, { cookieCount: 0, localStorageKeyCount: 0, sessionStorageKeyCount: 0, eventCount: 0, appEventCount: 0 });
   assert.ok(envelope.findings.find(item => item.id === "CONSENT_APP_EVENTS").evidenceRefs.includes("browser:no-consent"));
@@ -46,6 +47,8 @@ test("builds a redacted evidence envelope with finding references", () => {
   const tampered = structuredClone(envelope);
   tampered.findings[0].evidenceRefs.push("browser:missing");
   assert.match(validateEvidenceEnvelope(tampered).join("; "), /missing evidence reference/);
+  const redacted = buildEvidenceEnvelope({ target: "https://example.test/path?gclid=secret&fbclid=other", findings: [] });
+  assert.deepEqual(redacted.target, { origin: "https://example.test", pathname: "/path", queryKeys: ["fbclid", "gclid"] });
 });
 
 test('no contract never fabricates consent, page-view or drift passes', () => {
