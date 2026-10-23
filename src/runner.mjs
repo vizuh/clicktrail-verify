@@ -12,7 +12,7 @@ const TRACKING_PATTERNS = [
   ['conversion_events', /purchase|conversion|page_view|form_start|event_id/i],
 ];
 const SKIP_DIRS = new Set(['.git', '.next', 'node_modules', 'dist', 'build', '.clicktrail']);
-const safeUrl = (raw) => { const url = new URL(raw); return { origin: url.origin, queryKeys: [...new Set(url.searchParams.keys()).filter((key) => /^[A-Za-z0-9_.-]{1,64}$/.test(key))].sort() }; };
+const safeUrl = (raw) => { const url = new URL(raw); return { origin: url.origin, queryKeys: [...new Set(url.searchParams.keys())].filter((key) => /^[A-Za-z0-9_.-]{1,64}$/.test(key)).sort() }; };
 const hostMatches = (host, domain) => host === domain || host.endsWith(`.${domain}`);
 const providerFor = (raw) => {
   const host = new URL(raw).hostname.toLowerCase();
