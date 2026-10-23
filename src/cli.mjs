@@ -29,6 +29,7 @@ function validateReportShape(report) {
   for (const finding of report.findings || []) {
     if (!finding || typeof finding.id !== 'string' || typeof finding.status !== 'string' || typeof finding.message !== 'string') errors.push('finding shape is invalid');
     if (finding && !['PASS', 'FAIL', 'NOT_RUN', 'WARN', 'UNKNOWN'].includes(finding.status)) errors.push(`invalid finding status: ${finding.status}`);
+    if (finding && 'applicability' in finding && (finding.applicability !== 'not-applicable' || finding.status !== 'NOT_RUN')) errors.push(`invalid finding applicability: ${finding.id}`);
   }
   return errors;
 }

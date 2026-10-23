@@ -5,7 +5,7 @@ export function validateContract(input = {}) {
   };
   const name = value => typeof value === 'string' && /^[A-Za-z][A-Za-z0-9_.:-]{0,127}$/.test(value);
   const field = value => name(value) && !value.split('.').some(key => ['__proto__', 'prototype', 'constructor'].includes(key));
-  object(input, ['applicationEvents', 'pageViewEvent', 'consent', 'attribution', 'collectors', 'expectedApiEvents'], 'project');
+  object(input, ['applicationEvents', 'pageViewEvent', 'consent', 'attribution', 'collectors', 'expectedApiEvents', 'ga4'], 'project');
   for (const key of ['applicationEvents', 'expectedApiEvents']) {
     if (input[key] !== undefined && (!Array.isArray(input[key]) || !input[key].length || input[key].some(value => !name(value)))) throw new Error(`Invalid ${key}`);
   }
@@ -23,6 +23,19 @@ export function validateContract(input = {}) {
     for (const item of input.collectors) {
       object(item, ['path', 'eventField'], 'collector');
       if (typeof item.path !== 'string' || !/^\/(?!\/)[^?#\s]*$/.test(item.path) || !field(item.eventField)) throw new Error('Invalid collector fields');
+    }
+  }
+  if (input.ga4 !== undefined) {
+    object(input.ga4, ['measurementId', 'hostSessionId', 'preNavigation'], 'ga4');
+    if (input.ga4.measurementId !== undefined && (typeof input.ga4.measurementId !== 'string' || !/^G-[A-Za-z0-9]{1,32}$/.test(input.ga4.measurementId))) throw new Error('Invalid ga4.measurementId');
+    if (input.ga4.hostSessionId !== undefined) {
+      object(input.ga4.hostSessionId, ['path', 'field'], 'ga4.hostSessionId');
+      if (typeof input.ga4.hostSessionId.path !== 'string' || !/^\/(?!\/)[^?#\s]*$/.test(input.ga4.hostSessionId.path) || !field(input.ga4.hostSessionId.field)) throw new Error('Invalid ga4.hostSessionId fields');
+    }
+    if (input.ga4.preNavigation !== undefined) {
+      object(input.ga4.preNavigation, ['trigger', 'event'], 'ga4.preNavigation');
+      const { trigger, event } = input.ga4.preNavigation;
+      if (typeof trigger !== 'string' || !trigger.trim() || trigger.length > 200 || !name(event)) throw new Error('Invalid ga4.preNavigation fields');
     }
   }
   return input;

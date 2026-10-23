@@ -104,7 +104,7 @@ test("maps content evidence even when it is not present in a filename", () => {
 test("malformed navigation returns unknown browser evidence", async () => {
   const browser = await runBrowserVerification({ url: "not-a-url", contract: {} });
   assert.equal(browser.browserError, "Invalid navigation URL");
-  assert.deepEqual(evaluate(browser, null, {}).map(({ status }) => status), ["UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "NOT_RUN"]);
+  assert.deepEqual(evaluate(browser, null, {}).map(({ status }) => status), ["UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "NOT_RUN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN", "NOT_RUN", "NOT_RUN"]);
 });
 
 test("malformed browser reports remain unknown", () => {

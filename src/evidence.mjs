@@ -8,6 +8,7 @@ const FINDING_CASES = new Map([
   ['PRECONSENT_PROVIDER_ACTIVITY', ['no-consent', 'deny-consent']],
   ['SOURCE_RUNTIME_EVENT_DRIFT', ['grant-consent']],
 ]);
+const GA4_FINDINGS = new Set(['GA4_SID_CONTINUITY', 'GA4_SID_FORMAT', 'GA4_RESERVED_PARAM_OVERRIDE', 'GA4_PAGE_VIEW_PER_NAVIGATION', 'GA4_COOKIE_PARSE']);
 
 const count = (value) => Array.isArray(value) ? value.length : 0;
 const object = (value) => value && typeof value === 'object' && !Array.isArray(value) ? value : {};
@@ -51,6 +52,60 @@ function caseObservation(item) {
   };
 }
 
+// GA4 summaries are already redacted (counts, formats, booleans, ordinal
+// property labels); the envelope copies only the known fields.
+const counts = (value, keys) => Object.fromEntries(keys.map(key => [key, Number(object(value)[key]) || 0]));
+const FORMAT_KEYS = ['numeric10', 'uuid', 'other', 'missing'];
+function ga4Summary(summary) {
+  const value = object(summary);
+  const host = value.hostSessionId ? object(value.hostSessionId) : null;
+  const properties = Array.isArray(value.properties) ? value.properties.map(item => ({
+    label: typeof item?.label === 'string' && /^property-\d+$/.test(item.label) ? item.label : null,
+    eventCount: Number(item?.eventCount) || 0,
+    sid: counts(item?.sid, ['distinctCount', 'missingCount', 'numeric10Count', 'uuidCount', 'otherCount']),
+    cookieFormat: ['GS1', 'GS2', 'unparsed', 'absent'].includes(item?.cookieFormat) ? item.cookieFormat : null,
+    sidMatchesCookie: typeof item?.sidMatchesCookie === 'boolean' ? item.sidMatchesCookie : null,
+    reservedParams: Array.isArray(item?.reservedParams) ? item.reservedParams.filter(name => typeof name === 'string' && /^epn?\.(session_id|client_id|user_id)$/.test(name)) : [],
+    maxPageViewsPerNavigation: Number(item?.maxPageViewsPerNavigation) || 0,
+    duplicatePageViewNavigations: Number(item?.duplicatePageViewNavigations) || 0,
+  })) : [];
+  return {
+    collectEventCount: Number(value.collectEventCount) || 0,
+    analyticsDeniedEventCount: Number(value.analyticsDeniedEventCount) || 0,
+    navigationCount: Number(value.navigationCount) || 0,
+    properties,
+    hostSessionId: host ? {
+      ...counts(host, ['requestCount', 'matchCount', 'mismatchCount']),
+      valueFormats: counts(host.valueFormats, FORMAT_KEYS),
+      propertyResolution: ['pinned', 'single-cookie', 'single-property', 'ambiguous', 'none'].includes(host.propertyResolution) ? host.propertyResolution : null,
+      cookieFormat: ['GS1', 'GS2', 'unparsed', 'absent'].includes(host.cookieFormat) ? host.cookieFormat : null,
+    } : null,
+    trackedEvent: value.trackedEvent ? counts(value.trackedEvent, ['issuedCount', 'finishedCount', 'failedCount', 'unconfirmedCount']) : null,
+  };
+}
+
+function ga4Observations(browser) {
+  const observations = [];
+  const granted = Array.isArray(browser?.cases) ? browser.cases.find(item => item?.label === 'grant-consent') : null;
+  if (granted?.ga4) observations.push({ id: 'ga4:grant-consent', kind: 'ga4_hits', authority: 'observed', ...ga4Summary(granted.ga4) });
+  if (browser?.journey?.ga4) observations.push({ id: 'ga4:second-touch', kind: 'ga4_hits', authority: 'observed', ...ga4Summary(browser.journey.ga4) });
+  const probe = object(browser?.preNavigation);
+  if (browser?.preNavigation) {
+    observations.push({
+      id: 'ga4:pre-navigation',
+      kind: 'ga4_pre_navigation',
+      authority: 'observed',
+      consentGranted: probe.consentGranted === true,
+      trigger: typeof probe.trigger === 'string' ? probe.trigger : null,
+      navigationObserved: probe.navigationObserved === true,
+      offsiteNavigation: probe.offsiteNavigation === true,
+      error: typeof probe.error === 'string' ? probe.error : null,
+      ...ga4Summary(probe.ga4),
+    });
+  }
+  return observations;
+}
+
 function findingRefs(finding, observations) {
   const refs = [];
   for (const label of FINDING_CASES.get(finding.id) || []) {
@@ -59,6 +114,8 @@ function findingRefs(finding, observations) {
   if (finding.id === 'SOURCE_RUNTIME_EVENT_DRIFT') refs.push('source:inventory');
   if (finding.id === 'BROWSER_ERRORS' && observations.some(observation => observation.id === 'browser:launch')) refs.push('browser:launch');
   if (finding.id === 'PAGE_VIEW_DEDUPE' || finding.id === 'ATTRIBUTION_HANDOFF') refs.push('journey:second-touch');
+  if (GA4_FINDINGS.has(finding.id)) refs.push(...observations.filter(observation => observation.id.startsWith('ga4:')).map(observation => observation.id));
+  if (finding.id === 'GA4_PRE_NAVIGATION_DELIVERY' && observations.some(observation => observation.id === 'ga4:pre-navigation')) refs.push('ga4:pre-navigation');
   return [...new Set(refs)];
 }
 
@@ -83,6 +140,7 @@ export function buildEvidenceEnvelope({ target, repo, contract, source, browser,
       error: typeof browser.journey.error === 'string' ? browser.journey.error : null,
     }] : []),
     ...(browser?.browserError ? [{ id: 'browser:launch', kind: 'browser_run', authority: 'observed', error: browser.browserError }] : []),
+    ...ga4Observations(browser),
   ];
   const canonicalFindings = (Array.isArray(findings) ? findings : []).map((finding) => ({
     ...finding,

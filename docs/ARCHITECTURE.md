@@ -46,15 +46,20 @@ pass or a client-specific failure.
 New reports contain an `evidence` object with schema `1.0.0`. It contains:
 
 - `observations`: redacted facts such as case labels, status codes, counts, and
-  safe relative paths;
+  safe relative paths; `ga4:*` observations hold per-visit GA4 hit summaries
+  (counts, format classes, equality booleans, ordinal property labels);
 - `findings`: deterministic results with `evidenceRefs`;
 - `advisory`: an explicit `not-run` placeholder until an optional advisor runs;
 - `producer`: `clicktrail-verify`;
 - `target`: origin, pathname, and query-key names only; query values are removed.
 
 `PASS`, `FAIL`, `WARN`, `NOT_RUN`, and `UNKNOWN` remain factual report states.
-An evidence reference identifies an observation. It is not a cryptographic
-claim and it does not prove a provider accepted a conversion.
+A `NOT_RUN` finding may carry `"applicability": "not-applicable"` when its
+precondition is absent (for example, no GA4 hits). A dedicated
+`NOT_APPLICABLE` status would need report schema `0.4.0` and a paired
+`clicktrail-mcp` validator change. An evidence reference identifies an
+observation. It is not a cryptographic claim and it does not prove a provider
+accepted a conversion.
 
 The top-level report schema is `0.3.0`. The legacy `0.2.0` reports remain useful
 historical artifacts, but they do not contain the new evidence envelope.
@@ -67,7 +72,10 @@ historical artifacts, but they do not contain the new evidence envelope.
    does not inspect `.env*` files or infer runtime behavior from regex matches.
 3. **Browser boundary:** each case uses an isolated context. Cookies, storage
    values, request bodies, headers, identities, and secrets are not written to
-   the report.
+   the report. GA4 `cid`/`sid` values and the host's GA session field are
+   compared in memory; only equality and format classes are reported. The
+   opt-in pre-navigation probe stubs every navigation, answers GA4 hits
+   locally, and aborts other non-GET requests.
 4. **Evaluation boundary:** deterministic code owns status and threshold logic.
    Provider activity is an observation; provider acceptance needs an independent
    receipt and remains outside the default runner.
