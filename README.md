@@ -91,6 +91,64 @@ reports under `examples/aferraria-2026-09-15` predate this behavior and are not
 current generic-runner acceptance evidence. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 for the cross-repository flow and trust boundaries.
 
+## GA4 hit checks
+
+The runner inspects GA4 `/g/collect?v=2` requests (Google hosts and first-party
+server-side paths alike) in the granted case, the `--second-url` journey, and
+the optional pre-navigation probe. Each isolated browser context is one visit.
+Hits whose `gcs` marks analytics storage as denied are ignored.
+
+| Finding | PASS rule |
+| --- | --- |
+| `GA4_SID_CONTINUITY` | Per property, every hit carries one `sid`, equal to the `s` segment of `_ga_<container>` (GS1 or GS2). `UNKNOWN` when the cookie cannot be compared. |
+| `GA4_SID_FORMAT` | Every `sid` is a 10-digit numeric session timestamp, never a UUID or other first-party ID. |
+| `GA4_RESERVED_PARAM_OVERRIDE` | No `ep.`/`epn.` parameter named `session_id`, `client_id`, or `user_id`. |
+| `GA4_PAGE_VIEW_PER_NAVIGATION` | At most one `page_view` per property per main-frame navigation (full or same-document). |
+| `GA4_PRE_NAVIGATION_DELIVERY` | Opt-in. The declared event's collect request is issued before the page is replaced and is not reported failed. |
+| `GA4_COOKIE_PARSE` | Opt-in. The GA session ID the host sends on its declared request equals the cookie's `s` value. |
+
+When a visit produced no analytics-granted GA4 hits after a consent click, the
+hit checks are `NOT_RUN` with `"applicability": "not-applicable"`; without a
+consent click they stay `UNKNOWN`. `GA4_COOKIE_PARSE` is not applicable when the
+contract declares no host request field. Report schema `0.3.0` keeps its status
+set; `applicability` is an additive field.
+
+Raw `cid`, `sid`, measurement IDs, and cookie values are compared in memory and
+never written. Reports carry ordinal property labels (`property-1`), counts,
+format classes (`numeric10`, `uuid`, `other`, `missing`), equality booleans, and
+reserved parameter names.
+
+The two opt-in checks use the `ga4` contract block:
+
+```json
+{
+  "ga4": {
+    "measurementId": "G-XXXXXXX",
+    "hostSessionId": { "path": "/api/checkout", "field": "analytics.ga_session_id" },
+    "preNavigation": { "trigger": "Pay now", "event": "begin_checkout" }
+  }
+}
+```
+
+- `measurementId` pins which `_ga_<container>` cookie the host value is compared
+  with. Without it, a single GA session cookie or a single observed property is
+  used; anything else is `UNKNOWN`.
+- `hostSessionId` names a same-origin request path and a JSON body path (form
+  bodies and query parameters with the same name also work).
+- `preNavigation` runs one extra isolated context: it grants consent, then clicks
+  the one visible link or button with that exact accessible name. Triggers inside
+  a `<form>` or with `type="submit"` are refused. After arming, every top-level
+  navigation is answered with a local stub page, GA4 collect hits are answered
+  locally (the synthetic conversion never reaches Google), and other non-GET
+  requests are aborted after the declared host field is read. A host that must
+  create a checkout session through its API before navigating therefore yields
+  `UNKNOWN`, not a submitted checkout.
+
+A request observed leaving the page counts as delivered: browsers do not report
+completion for requests whose document has been replaced. Provider acceptance is
+not proven. Synthetic fixture pages for each failure live in
+`tests/fixtures/ga4/`.
+
 ## ClickTrail repository mapping
 
 Use `--clicktrail-root` when the ClickTrail source repositories are available
@@ -126,7 +184,9 @@ routing and priority, but cannot change any finding status.
 
 - Use staging or localhost by default.
 - Use synthetic query values and identities.
-- The runner never submits forms or clicks WhatsApp/phone conversion links.
+- The runner never submits forms or clicks WhatsApp/phone conversion links. The
+  opt-in GA4 pre-navigation probe clicks only one declared non-form trigger and
+  replaces every resulting navigation with a local stub.
 - Provider delivery is not verified by a browser request alone.
 - Add an explicit, reviewed adapter before testing a real form or conversion.
 - AI diagnosis belongs above this runner; deterministic assertions decide pass,
@@ -137,5 +197,5 @@ routing and priority, but cannot change any finding status.
 ```sh
 npm test
 npm run typecheck
-CLICKTRAIL_BROWSER_EXECUTABLE=/usr/bin/google-chrome node --test tests/browser.test.mjs
+CLICKTRAIL_BROWSER_EXECUTABLE=/usr/bin/google-chrome node --test tests/browser.test.mjs tests/ga4-browser.test.mjs
 ```

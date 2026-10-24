@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "typecheck": "node --check src/cli.mjs && node --check src/runner.mjs && node --check src/contract.mjs && node --check src/evidence.mjs"
+    "typecheck": "node --check src/cli.mjs && node --check src/runner.mjs && node --check src/contract.mjs && node --check src/evidence.mjs && node --check src/ga4.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { chromium } from 'playwright';
 import { validateContract, applicationEvents, attributionAssertions } from './contract.mjs';
+import { recordGa4, isGa4CollectUrl, ga4Findings } from './ga4.mjs';
 
 const TRACKING_PATTERNS = [
   ['gtm', /googletagmanager|gtm\.js|GTM-[A-Z0-9]+/i],
@@ -12,7 +13,7 @@ const TRACKING_PATTERNS = [
   ['conversion_events', /purchase|conversion|page_view|form_start|event_id/i],
 ];
 const SKIP_DIRS = new Set(['.git', '.next', 'node_modules', 'dist', 'build', '.clicktrail']);
-const safeUrl = (raw) => { const url = new URL(raw); return { origin: url.origin, queryKeys: [...new Set(url.searchParams.keys()).filter((key) => /^[A-Za-z0-9_.-]{1,64}$/.test(key))].sort() }; };
+const safeUrl = (raw) => { const url = new URL(raw); return { origin: url.origin, queryKeys: [...new Set(url.searchParams.keys())].filter((key) => /^[A-Za-z0-9_.-]{1,64}$/.test(key)).sort() }; };
 const hostMatches = (host, domain) => host === domain || host.endsWith(`.${domain}`);
 const providerFor = (raw) => {
   const host = new URL(raw).hostname.toLowerCase();
@@ -96,10 +97,12 @@ async function runCase(browser, label, url, consentAction, contract) {
   let before = emptySnapshot();
   let after = emptySnapshot();
   let clicked = false;
+  let ga4 = null;
   try {
     context = await browser.newContext();
     const page = await context.newPage();
     await installProbe(page);
+    const recorder = recordGa4(page, { origin: new URL(url).origin, ga4: contract.ga4 });
     page.on('request', (request) => {
       if (!['document', 'script', 'fetch', 'xhr', 'beacon'].includes(request.resourceType())) return;
       try {
@@ -131,6 +134,7 @@ async function runCase(browser, label, url, consentAction, contract) {
     if (consentAction) clicked = await consentAction(page);
     await page.waitForTimeout(3_000);
     after = await pageSnapshot(page);
+    ga4 = await recorder.summarize(context);
   } catch {
     // A failed navigation or closed/crashed browser cannot prove a finding.
     navigationError = 'Navigation or browser operation failed';
@@ -138,7 +142,7 @@ async function runCase(browser, label, url, consentAction, contract) {
     try { await context?.close(); } catch { /* preserve the unknown result */ }
   }
   const appEvents = applicationEvents(after.events, contract);
-  return { label, navigationStatus, navigationError, consentActionClicked: clicked, before, after, appEvents, requests, responses, consoleErrors, pageErrors };
+  return { label, navigationStatus, navigationError, consentActionClicked: clicked, before, after, appEvents, requests, responses, consoleErrors, pageErrors, ga4 };
 }
 
 async function clickConsent(page, action, contract) {
@@ -196,6 +200,7 @@ export async function runBrowserVerification({ url, secondUrl, executablePath, a
         context = await browser.newContext();
         const page = await context.newPage();
         await installProbe(page);
+        const recorder = recordGa4(page, { origin: new URL(url).origin, ga4: contract.ga4 });
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
         await page.waitForTimeout(5_000);
         const consentGranted = await clickConsent(page, 'accept', contract);
@@ -215,7 +220,7 @@ export async function runBrowserVerification({ url, secondUrl, executablePath, a
             onePageViewOnSecondVisit: secondViews.length === 1,
             pageViewEventIdOnEachVisit: firstViews.length === 1 && secondViews.length === 1 && [...firstViews, ...secondViews].every(event => event.eventIdPresent),
           } : {}),
-        } };
+        }, ga4: await recorder.summarize(context) };
       } catch {
         // A partial two-touch journey cannot prove handoff or dedupe.
         journey = { error: 'Journey navigation or browser operation failed', assertions: {} };
@@ -223,8 +228,74 @@ export async function runBrowserVerification({ url, secondUrl, executablePath, a
         try { await context?.close(); } catch { /* preserve unknown journey */ }
       }
     }
-    return { cases, journey };
+    const preNavigation = contract.ga4?.preNavigation ? await runPreNavigationProbe(browser, url, contract) : null;
+    return { cases, journey, preNavigation };
   } finally { try { await browser.close(); } catch { /* preserve collected evidence */ } }
+}
+
+const NAVIGATION_STUB = '<!doctype html><title>clicktrail-verify navigation stub</title>';
+
+async function clickTrigger(page, name) {
+  const trigger = page.getByRole('link', { name, exact: true }).or(page.getByRole('button', { name, exact: true }));
+  const count = await trigger.count();
+  if (count === 0) return 'missing';
+  if (count > 1) return 'ambiguous';
+  if (!await trigger.isVisible()) return 'hidden';
+  // Submitting a form is outside the safe boundary even with stubbed navigation.
+  if (await trigger.evaluate(element => !!element.closest('form') || element.getAttribute('type') === 'submit')) return 'refused-form';
+  await trigger.click({ timeout: 5_000, noWaitAfter: true });
+  return 'clicked';
+}
+
+// Clicks one declared trigger after consent and checks whether the declared
+// GA4 event leaves the page before the document is replaced. Every top-level
+// document navigation after arming is answered with a local stub, so no
+// checkout, payment or redirect target is ever loaded. GA4 collect hits are
+// observed and answered locally, so the synthetic conversion never reaches the
+// provider. Other non-GET requests are aborted after their declared host field
+// is read.
+async function runPreNavigationProbe(browser, url, contract) {
+  const { trigger, event } = contract.ga4.preNavigation;
+  const result = { consentGranted: false, trigger: 'not-attempted', navigationObserved: false, offsiteNavigation: false, error: null, ga4: null };
+  let context;
+  try {
+    context = await browser.newContext();
+    const page = await context.newPage();
+    await installProbe(page);
+    const origin = new URL(url).origin;
+    const recorder = recordGa4(page, { origin, ga4: contract.ga4, trackedEvent: event });
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 45_000 });
+    await page.waitForTimeout(5_000);
+    result.consentGranted = await clickConsent(page, 'accept', contract);
+    await page.waitForTimeout(3_000);
+    let navigated;
+    const navigation = new Promise(resolve => { navigated = resolve; });
+    const settle = (operation) => operation.catch(() => { /* request ended with its page */ });
+    await context.route(() => true, async (route) => {
+      const request = route.request();
+      let topLevel = false;
+      try { topLevel = request.isNavigationRequest() && request.frame().parentFrame() === null; } catch { /* service-worker request */ }
+      if (topLevel) {
+        result.navigationObserved = true;
+        try { result.offsiteNavigation = new URL(request.url()).origin !== origin; } catch { result.offsiteNavigation = true; }
+        navigated();
+        return settle(route.fulfill({ status: 200, contentType: 'text/html', body: NAVIGATION_STUB }));
+      }
+      if (isGa4CollectUrl(request.url())) return settle(route.fulfill({ status: 204 }));
+      if (!['GET', 'HEAD', 'OPTIONS'].includes(request.method())) return settle(route.abort());
+      return settle(route.continue());
+    });
+    result.trigger = await clickTrigger(page, trigger);
+    if (result.trigger === 'clicked') await Promise.race([navigation, page.waitForTimeout(10_000)]);
+    await page.waitForTimeout(3_000);
+    result.ga4 = await recorder.summarize(context);
+  } catch {
+    // A partial probe cannot prove delivery or loss.
+    result.error = 'Pre-navigation probe failed';
+  } finally {
+    try { await context?.close(); } catch { /* preserve unknown probe */ }
+  }
+  return result;
 }
 
 export function evaluate(report, source = null, rawContract = {}) {
@@ -250,7 +321,7 @@ export function evaluate(report, source = null, rawContract = {}) {
   // Source regex matches are hints, not an authoritative event contract.
   const driftKnown = ready && contract.collectors?.length && contract.expectedApiEvents?.length && observedApiEvents.length > 0;
   const drift = observedApiEvents.filter(event => !contract.expectedApiEvents?.includes(event));
-  const finding = (id, status, message) => ({ id, severity: status.toLowerCase().replace('_', '-'), status, message });
+  const finding = (id, status, message, extra = {}) => ({ id, severity: status.toLowerCase().replace('_', '-'), status, message, ...extra });
   const findings = [
     finding('CONSENT_APP_EVENTS', namedEvents && forbidden.length ? 'FAIL' : consentKnown ? 'PASS' : 'UNKNOWN', 'Checks declared application events before consent and after refusal. PASS requires both consent actions and a positive granted-event control.'),
     finding('GRANTED_PAGE_VIEW', !contract.pageViewEvent || !loaded(granted) || !granted.consentActionClicked ? 'UNKNOWN' : pageViews.length === 1 ? 'PASS' : 'FAIL', 'One configured page-view event is required; no project-specific event is assumed.'),
@@ -260,6 +331,8 @@ export function evaluate(report, source = null, rawContract = {}) {
     finding('FORM_CONVERSION', 'NOT_RUN', 'Forms and conversions are not submitted by the safe default runner.'),
   ];
   const journey = safeReport.journey && typeof safeReport.journey === 'object' && !Array.isArray(safeReport.journey) ? safeReport.journey : null;
+  const preNavigation = safeReport.preNavigation && typeof safeReport.preNavigation === 'object' && !Array.isArray(safeReport.preNavigation) ? safeReport.preNavigation : null;
+  findings.push(...ga4Findings({ granted, grantedLoaded: loaded(granted), journey, preNavigation, contract, finding }));
   if (journey) {
     const assertions = journey.assertions && typeof journey.assertions === 'object' ? journey.assertions : {};
     const grantedJourney = journey.consentGranted === true;

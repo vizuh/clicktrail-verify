@@ -75,7 +75,23 @@
           "type": [
             "object",
             "null"
-          ]
+          ],
+          "properties": {
+            "ga4": { "$ref": "#/$defs/ga4Summary" }
+          }
+        },
+        "preNavigation": {
+          "type": ["object", "null"],
+          "description": "Opt-in GA4 pre-navigation probe (contract ga4.preNavigation). Navigation targets are stubbed; forms are never submitted.",
+          "required": ["consentGranted", "trigger", "navigationObserved", "offsiteNavigation", "error", "ga4"],
+          "properties": {
+            "consentGranted": { "type": "boolean" },
+            "trigger": { "enum": ["not-attempted", "clicked", "missing", "ambiguous", "hidden", "refused-form"] },
+            "navigationObserved": { "type": "boolean" },
+            "offsiteNavigation": { "type": "boolean" },
+            "error": { "type": ["string", "null"] },
+            "ga4": { "$ref": "#/$defs/ga4Summary" }
+          }
         }
       }
     },
@@ -200,6 +216,9 @@
         },
         "pageErrors": {
           "type": "array"
+        },
+        "ga4": {
+          "$ref": "#/$defs/ga4Summary"
         }
       }
     },
@@ -236,6 +255,10 @@
         "message": {
           "type": "string"
         },
+        "applicability": {
+          "description": "Set when status NOT_RUN means the check's precondition is absent, not that the runner skipped it.",
+          "enum": ["not-applicable"]
+        },
         "owner": {
           "type": "string"
         },
@@ -248,6 +271,76 @@
         },
         "evaluator": {
           "type": "string"
+        }
+      }
+    },
+    "formatCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "numeric10": { "type": "integer", "minimum": 0 },
+        "uuid": { "type": "integer", "minimum": 0 },
+        "other": { "type": "integer", "minimum": 0 },
+        "missing": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "ga4Summary": {
+      "type": ["object", "null"],
+      "description": "Redacted GA4 collect-hit evidence for one isolated visit. No cid, sid, measurement ID or cookie value is stored; only counts, format classes, equality booleans and reserved parameter names.",
+      "required": ["collectEventCount", "analyticsDeniedEventCount", "navigationCount", "properties", "hostSessionId", "trackedEvent"],
+      "properties": {
+        "collectEventCount": { "type": "integer", "minimum": 0 },
+        "analyticsDeniedEventCount": { "type": "integer", "minimum": 0 },
+        "navigationCount": { "type": "integer", "minimum": 0 },
+        "properties": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["label", "eventCount", "sid", "cookieFormat", "sidMatchesCookie", "reservedParams", "maxPageViewsPerNavigation", "duplicatePageViewNavigations"],
+            "properties": {
+              "label": { "type": "string", "pattern": "^property-[0-9]+$" },
+              "eventCount": { "type": "integer", "minimum": 0 },
+              "sid": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "distinctCount": { "type": "integer", "minimum": 0 },
+                  "missingCount": { "type": "integer", "minimum": 0 },
+                  "numeric10Count": { "type": "integer", "minimum": 0 },
+                  "uuidCount": { "type": "integer", "minimum": 0 },
+                  "otherCount": { "type": "integer", "minimum": 0 }
+                }
+              },
+              "cookieFormat": { "enum": ["GS1", "GS2", "unparsed", "absent"] },
+              "sidMatchesCookie": { "type": ["boolean", "null"] },
+              "reservedParams": { "type": "array", "items": { "type": "string", "pattern": "^epn?\\.(session_id|client_id|user_id)$" } },
+              "maxPageViewsPerNavigation": { "type": "integer", "minimum": 0 },
+              "duplicatePageViewNavigations": { "type": "integer", "minimum": 0 }
+            }
+          }
+        },
+        "hostSessionId": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "requestCount": { "type": "integer", "minimum": 0 },
+            "valueFormats": { "$ref": "#/$defs/formatCounts" },
+            "propertyResolution": { "enum": ["pinned", "single-cookie", "single-property", "ambiguous", "none"] },
+            "cookieFormat": { "enum": ["GS1", "GS2", "unparsed", "absent"] },
+            "matchCount": { "type": "integer", "minimum": 0 },
+            "mismatchCount": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "trackedEvent": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "properties": {
+            "issuedCount": { "type": "integer", "minimum": 0 },
+            "finishedCount": { "type": "integer", "minimum": 0 },
+            "failedCount": { "type": "integer", "minimum": 0 },
+            "unconfirmedCount": { "type": "integer", "minimum": 0 }
+          }
         }
       }
     }

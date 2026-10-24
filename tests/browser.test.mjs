@@ -25,8 +25,11 @@ test('generic browser contract covers consent, collector and two-touch attributi
     const base = `http://127.0.0.1:${server.address().port}`;
     const contract = { pageViewEvent: 'sample_visit', consent: { acceptButton: 'Enable metrics', denyButton: 'Keep private' }, attribution: { storageKey: 'sample:touches', firstTouchPath: 'first.source', lastTouchPath: 'last.source' }, collectors: [{ path: '/metrics', eventField: 'envelope.kind' }], expectedApiEvents: ['sample_visit'] };
     const browser = await runBrowserVerification({ url: `${base}/?utm_source=one`, secondUrl: `${base}/?utm_source=two`, contract, executablePath: process.env.CLICKTRAIL_BROWSER_EXECUTABLE });
-    const results = Object.fromEntries(evaluate(browser, null, contract).map(item => [item.id, item.status]));
+    const findings = evaluate(browser, null, contract);
+    const results = Object.fromEntries(findings.map(item => [item.id, item.status]));
     for (const id of ['CONSENT_APP_EVENTS', 'GRANTED_PAGE_VIEW', 'SOURCE_RUNTIME_EVENT_DRIFT', 'PAGE_VIEW_DEDUPE', 'ATTRIBUTION_HANDOFF']) assert.equal(results[id], 'PASS', id);
+    // A page without GA4 hits makes the GA4 hit checks not applicable, never a pass.
+    for (const item of findings.filter(item => item.id.startsWith('GA4_') && item.id !== 'GA4_PRE_NAVIGATION_DELIVERY')) assert.deepEqual([item.status, item.applicability], ['NOT_RUN', 'not-applicable'], item.id);
     const serialized = JSON.stringify(browser);
     assert.ok(!serialized.includes('MUST_NOT_APPEAR'));
     assert.ok(!serialized.includes('synthetic-id'));
